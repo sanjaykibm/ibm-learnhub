@@ -1,0 +1,2633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBM LearnHub - Training Management Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background-color: #f4f4f4;
+            color: #161616;
+        }
+
+        .header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 0 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0F62FE;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: #525252;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: #161616;
+        }
+
+        .user-role {
+            color: #0F62FE;
+            font-weight: 500;
+        }
+
+        .nav {
+            display: flex;
+            gap: 2rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .nav-item {
+            padding: 1rem 0;
+            cursor: pointer;
+            color: #525252;
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .nav-item:hover {
+            color: #0F62FE;
+        }
+
+        .nav-item.active {
+            color: #0F62FE;
+            border-bottom-color: #0F62FE;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .view-section {
+            display: none;
+        }
+
+        .view-section.active {
+            display: block;
+        }
+
+        .metrics-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 4px;
+            border-left: 4px solid #0F62FE;
+        }
+
+        .metric-label {
+            font-size: 0.875rem;
+            color: #525252;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #161616;
+        }
+
+        .filters-section {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: 'IBM Plex Sans', sans-serif;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-box:focus {
+            outline: 2px solid #0F62FE;
+            border-color: #0F62FE;
+        }
+
+        .category-filters {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #e0e0e0;
+            background: #ffffff;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
+
+        .category-btn:hover {
+            border-color: #0F62FE;
+            color: #0F62FE;
+        }
+
+        .category-btn.active {
+            background: #0F62FE;
+            color: #ffffff;
+            border-color: #0F62FE;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .course-card {
+            background: #ffffff;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-category-banner {
+            padding: 0.5rem 1rem;
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .category-agentic-ai { background: #0F62FE; }
+        .category-cloud { background: #24A148; }
+        .category-ams { background: #8A3FFC; }
+        .category-governance { background: #FA4D56; }
+        .category-data { background: #F1C21B; color: #161616; }
+        .category-leadership { background: #FF832B; }
+
+        .course-content {
+            padding: 1.5rem;
+        }
+
+        .course-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #161616;
+        }
+
+        .course-trainer {
+            font-size: 0.875rem;
+            color: #525252;
+            margin-bottom: 1rem;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            color: #525252;
+        }
+
+        .course-badges {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .badge-format {
+            background: #E8DAFF;
+            color: #6929C4;
+        }
+
+        .badge-status-open {
+            background: #DEFBE6;
+            color: #0E6027;
+        }
+
+        .badge-status-full {
+            background: #FFD6E8;
+            color: #9F1853;
+        }
+
+        .badge-status-upcoming {
+            background: #D0E2FF;
+            color: #0043CE;
+        }
+
+        .enrolment-progress {
+            margin-bottom: 1rem;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: #525252;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #0F62FE;
+            transition: width 0.3s;
+        }
+
+        .enrol-btn, .waitlist-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: #0F62FE;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
+
+        .enrol-btn:hover {
+            background: #0353E9;
+        }
+
+        .waitlist-btn {
+            background: #8A3FFC;
+        }
+
+        .waitlist-btn:hover {
+            background: #6929C4;
+        }
+
+        .enrol-btn:disabled {
+            background: #c6c6c6;
+            cursor: not-allowed;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: #ffffff;
+            border-radius: 4px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #161616;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #161616;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: 2px solid #0F62FE;
+            border-color: #0F62FE;
+        }
+
+        .modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'IBM Plex Sans', sans-serif;
+            transition: background 0.2s;
+        }
+
+        .btn-primary {
+            background: #0F62FE;
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background: #0353E9;
+        }
+
+        .btn-secondary {
+            background: #ffffff;
+            color: #161616;
+            border: 1px solid #e0e0e0;
+        }
+
+        .btn-secondary:hover {
+            background: #f4f4f4;
+        }
+
+        .confirmation-content {
+            text-align: center;
+        }
+
+        .confirmation-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .confirmation-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #161616;
+            margin-bottom: 1rem;
+        }
+
+        .confirmation-details {
+            background: #f4f4f4;
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .confirmation-detail {
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+        }
+
+        .confirmation-detail:last-child {
+            margin-bottom: 0;
+        }
+
+        .confirmation-detail strong {
+            color: #161616;
+            font-weight: 600;
+        }
+
+        /* Admin Section */
+        .admin-controls {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .admin-controls label {
+            font-weight: 500;
+        }
+
+        .admin-controls select {
+            flex: 1;
+            min-width: 250px;
+            padding: 0.75rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
+
+        .roster-table-container {
+            background: #ffffff;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .roster-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .roster-table th {
+            background: #f4f4f4;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: #161616;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .roster-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 0.875rem;
+        }
+
+        .roster-table tr:hover {
+            background: #f4f4f4;
+        }
+
+        .status-select {
+            padding: 0.5rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 0.875rem;
+        }
+
+        .export-btn {
+            background: #24A148;
+            color: #ffffff;
+        }
+
+        .export-btn:hover {
+            background: #1E8A3C;
+        }
+
+        .notification-banner {
+            background: #DEFBE6;
+            border-left: 4px solid #24A148;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .notification-banner.active {
+            display: block;
+        }
+
+        .notification-banner strong {
+            color: #0E6027;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Upload Content Panel Styles */
+        .upload-content-panel {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin-top: 2rem;
+            border: 2px solid #0F62FE;
+        }
+
+        .upload-content-panel h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #161616;
+            margin-bottom: 1.5rem;
+        }
+
+        .upload-section {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .upload-section:last-child {
+            border-bottom: none;
+        }
+
+        .upload-section h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #161616;
+            margin-bottom: 1rem;
+        }
+
+        .file-upload-area {
+            border: 2px dashed #e0e0e0;
+            border-radius: 4px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .file-upload-area:hover {
+            border-color: #0F62FE;
+            background: #f4f4f4;
+        }
+
+        .file-upload-area.has-file {
+            border-color: #24A148;
+            background: #DEFBE6;
+        }
+
+        .upload-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .material-link-input {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .material-link-input input {
+            flex: 1;
+        }
+
+        .add-material-btn {
+            background: #0F62FE;
+            color: #ffffff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .add-material-btn:hover {
+            background: #0353E9;
+        }
+
+        .publish-btn {
+            background: #24A148;
+            color: #ffffff;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .publish-btn:hover {
+            background: #1E8A3C;
+        }
+
+        .publish-btn:disabled {
+            background: #c6c6c6;
+            cursor: not-allowed;
+        }
+
+        /* Recordings Section Styles */
+        .recordings-header {
+            margin-bottom: 2rem;
+        }
+
+        .recordings-filters {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+        }
+
+        .recordings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .recording-card {
+            background: #ffffff;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+        }
+
+        .recording-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .new-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #FA4D56;
+            color: #ffffff;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 10;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 200px;
+            background: #161616;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 3rem;
+            position: relative;
+        }
+
+        .recording-content {
+            padding: 1.5rem;
+        }
+
+        .recording-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #161616;
+        }
+
+        .recording-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            color: #525252;
+            flex-wrap: wrap;
+        }
+
+        .materials-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .materials-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #161616;
+            margin-bottom: 0.5rem;
+        }
+
+        .material-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .material-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #0F62FE;
+            text-decoration: none;
+            font-size: 0.875rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .material-link:hover {
+            background: #f4f4f4;
+        }
+
+        .watched-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: #ffffff;
+            color: #0F62FE;
+            border: 1px solid #0F62FE;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 1rem;
+        }
+
+        .watched-btn:hover {
+            background: #0F62FE;
+            color: #ffffff;
+        }
+
+        .watched-btn.watched {
+            background: #24A148;
+            color: #ffffff;
+            border-color: #24A148;
+        }
+
+        .badge-on-demand {
+            background: #8A3FFC;
+            color: #ffffff;
+        }
+
+        /* Feedback Form Styles */
+        .feedback-form-section {
+            margin-top: 1.5rem;
+        }
+
+        .star-rating {
+            display: flex;
+            gap: 0.5rem;
+            font-size: 2rem;
+            margin: 0.5rem 0;
+        }
+
+        .star {
+            cursor: pointer;
+            color: #e0e0e0;
+            transition: color 0.2s;
+        }
+
+        .star:hover,
+        .star.active {
+            color: #F1C21B;
+        }
+
+        .rating-question {
+            margin-bottom: 1.5rem;
+        }
+
+        .rating-question h4 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #161616;
+            margin-bottom: 0.5rem;
+        }
+
+        .small-star-rating {
+            display: flex;
+            gap: 0.25rem;
+            font-size: 1.25rem;
+        }
+
+        .feedback-textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 0.75rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 0.875rem;
+            resize: vertical;
+        }
+
+        .feedback-textarea:focus {
+            outline: 2px solid #0F62FE;
+            border-color: #0F62FE;
+        }
+
+        .recommend-options {
+            display: flex;
+            gap: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        .recommend-btn {
+            flex: 1;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            background: #ffffff;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .recommend-btn:hover {
+            border-color: #0F62FE;
+        }
+
+        .recommend-btn.selected {
+            border-color: #0F62FE;
+            background: #D0E2FF;
+            color: #0F62FE;
+        }
+
+        .anonymous-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 48px;
+            height: 24px;
+            background: #e0e0e0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .toggle-switch.active {
+            background: #0F62FE;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: #ffffff;
+            border-radius: 50%;
+            transition: transform 0.2s;
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(24px);
+        }
+
+        /* Feedback Display Styles */
+        .feedback-summary {
+            background: #f4f4f4;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+
+        .rating-display {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .rating-stars {
+            color: #F1C21B;
+            font-size: 1.25rem;
+        }
+
+        .rating-count {
+            color: #525252;
+            font-size: 0.875rem;
+        }
+
+        .rating-breakdown {
+            margin-top: 1rem;
+        }
+
+        .rating-bar-item {
+            margin-bottom: 0.75rem;
+        }
+
+        .rating-bar-label {
+            font-size: 0.75rem;
+            color: #525252;
+            margin-bottom: 0.25rem;
+        }
+
+        .rating-bar-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .rating-bar {
+            flex: 1;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .rating-bar-fill {
+            height: 100%;
+            background: #0F62FE;
+            transition: width 0.3s;
+        }
+
+        .rating-bar-value {
+            font-size: 0.75rem;
+            color: #161616;
+            font-weight: 600;
+            min-width: 30px;
+        }
+
+        .comments-feed {
+            margin-top: 1rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .comment-item {
+            background: #ffffff;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 0.75rem;
+            border-left: 3px solid #0F62FE;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.75rem;
+            color: #525252;
+        }
+
+        .comment-text {
+            font-size: 0.875rem;
+            color: #161616;
+            line-height: 1.5;
+        }
+
+        /* Certificate Styles */
+        .certificate-container {
+            background: #ffffff;
+            border: 2px solid #0F62FE;
+            border-radius: 8px;
+            padding: 3rem;
+            margin: 2rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .certificate-header {
+            margin-bottom: 2rem;
+        }
+
+        .certificate-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0F62FE;
+            margin-bottom: 1rem;
+        }
+
+        .certificate-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #161616;
+            margin-bottom: 0.5rem;
+        }
+
+        .certificate-subtitle {
+            font-size: 1rem;
+            color: #525252;
+        }
+
+        .certificate-body {
+            margin: 2rem 0;
+        }
+
+        .certificate-recipient {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #0F62FE;
+            margin: 1rem 0;
+        }
+
+        .certificate-course {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #161616;
+            margin: 1rem 0;
+        }
+
+        .certificate-details {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            font-size: 0.875rem;
+            color: #525252;
+        }
+
+        .certificate-footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .certificate-id {
+            font-size: 0.75rem;
+            color: #525252;
+            margin-top: 1rem;
+        }
+
+        .certificate-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .download-cert-btn {
+            background: #0F62FE;
+            color: #ffffff;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .download-cert-btn:hover {
+            background: #0353E9;
+        }
+
+        .my-learning-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .learning-card {
+            background: #ffffff;
+            border-radius: 4px;
+            padding: 1.5rem;
+            border-left: 4px solid #0F62FE;
+        }
+
+        .learning-card h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .learning-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .status-completed {
+            background: #DEFBE6;
+            color: #0E6027;
+        }
+
+        .status-in-progress {
+            background: #D0E2FF;
+            color: #0043CE;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .header {
+                padding: 0 1rem;
+            }
+
+            .nav {
+                gap: 1rem;
+                overflow-x: auto;
+            }
+
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .roster-table-container {
+                overflow-x: auto;
+            }
+
+            .modal {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-top">
+            <div class="logo">IBM LearnHub</div>
+            <div class="user-info">
+                <span class="user-name">SANJAY K</span>
+                <span>·</span>
+                <span class="user-role">ADMIN</span>
+            </div>
+        </div>
+        <nav class="nav">
+            <div class="nav-item active" data-view="catalogue">Catalogue</div>
+            <div class="nav-item" data-view="my-learning">My Learning</div>
+            <div class="nav-item" data-view="recordings">Recordings</div>
+            <div class="nav-item" data-view="analytics">Analytics</div>
+            <div class="nav-item" data-view="admin">Admin</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Notification Banner -->
+        <div class="notification-banner" id="notificationBanner"></div>
+
+        <!-- Catalogue View -->
+        <div class="view-section active" id="catalogueView">
+            <div class="metrics-bar">
+                <div class="metric-card">
+                    <div class="metric-label">Total Active Courses</div>
+                    <div class="metric-value">24</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Total Enrolled Learners</div>
+                    <div class="metric-value" id="totalLearners">1,847</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Completion Rate</div>
+                    <div class="metric-value">87%</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Avg Feedback Score</div>
+                    <div class="metric-value">4.6</div>
+                </div>
+            </div>
+
+            <div class="filters-section">
+                <input type="text" class="search-box" id="searchBox" placeholder="Search courses by title or trainer name...">
+                <div class="category-filters">
+                    <button class="category-btn active" data-category="all">All</button>
+                    <button class="category-btn" data-category="agentic-ai">Agentic AI</button>
+                    <button class="category-btn" data-category="cloud">Cloud & Infrastructure</button>
+                    <button class="category-btn" data-category="ams">AMS Delivery</button>
+                    <button class="category-btn" data-category="governance">AI Governance</button>
+                    <button class="category-btn" data-category="data">Data & Analytics</button>
+                    <button class="category-btn" data-category="leadership">Leadership</button>
+                </div>
+            </div>
+
+            <div class="course-grid" id="courseGrid"></div>
+        </div>
+
+        <!-- Admin View -->
+        <div class="view-section" id="adminView">
+            <h2 style="margin-bottom: 1.5rem; font-size: 1.5rem;">Attendee Roster Management</h2>
+            
+            <div class="admin-controls">
+                <label for="courseSelect">Select Course:</label>
+                <select id="courseSelect" class="form-select">
+                    <option value="">-- Select a course --</option>
+                </select>
+                <button class="btn export-btn" onclick="exportRoster()">Export CSV</button>
+            </div>
+
+            <div class="roster-table-container" id="rosterContainer" style="display: none;">
+                <table class="roster-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Band/Role</th>
+                            <th>Location</th>
+                            <th>Attendance Mode</th>
+                            <th>Enrolment Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rosterTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- Upload Training Content Panel -->
+            <div class="upload-content-panel" id="uploadContentPanel" style="display: none;">
+                <h3>📤 Upload Training Content</h3>
+                
+                <div class="upload-section">
+                    <h4>Recording URL</h4>
+                    <div class="form-group">
+                        <label class="form-label">Video URL (YouTube, MS Teams, or Vimeo)</label>
+                        <input type="url" class="form-input" id="recordingUrl" placeholder="https://...">
+                        <small style="color: #525252; font-size: 0.75rem;">Paste the full URL of your recording</small>
+                    </div>
+                </div>
+
+                <div class="upload-section">
+                    <h4>Slide Deck</h4>
+                    <div class="file-upload-area" id="slideUploadArea" onclick="document.getElementById('slideFileInput').click()">
+                        <div class="upload-icon">📄</div>
+                        <div id="slideUploadText">Click to upload slide deck (PDF, PPTX)</div>
+                    </div>
+                    <input type="file" id="slideFileInput" accept=".pdf,.pptx,.ppt" style="display: none;" onchange="handleSlideUpload(event)">
+                </div>
+
+                <div class="upload-section">
+                    <h4>Additional Materials (Up to 3)</h4>
+                    <div id="materialsContainer">
+                        <div class="material-link-input">
+                            <input type="text" class="form-input" placeholder="Material Label (e.g., Reference Guide)" id="materialLabel1">
+                            <input type="url" class="form-input" placeholder="https://..." id="materialUrl1">
+                        </div>
+                    </div>
+                    <button class="add-material-btn" onclick="addMaterialField()" id="addMaterialBtn">+ Add Another Material</button>
+                </div>
+
+                <button class="publish-btn" onclick="publishContent()" id="publishBtn">🚀 Publish Content as On-Demand</button>
+            </div>
+        </div>
+
+        <!-- My Learning View -->
+        <div class="view-section" id="myLearningView">
+            <h2 style="margin-bottom: 1.5rem; font-size: 1.5rem;">📚 My Learning</h2>
+            
+            <div class="my-learning-grid" id="myLearningGrid">
+                <p style="color: #525252; padding: 2rem;">No completed courses yet. Enroll in courses to get started!</p>
+            </div>
+        </div>
+        <div class="view-section" id="recordingsView">
+            <div class="recordings-header">
+                <h2 style="margin-bottom: 1rem; font-size: 1.5rem;">📹 Training Recordings</h2>
+                <p style="color: #525252;">Access on-demand training content, recordings, and materials</p>
+            </div>
+
+            <div class="recordings-filters">
+                <input type="text" class="search-box" id="recordingsSearchBox" placeholder="Search recordings by title or trainer...">
+                <div class="category-filters" style="margin-top: 1rem;">
+                    <button class="category-btn active" data-category="all" onclick="filterRecordings('all')">All</button>
+                    <button class="category-btn" data-category="agentic-ai" onclick="filterRecordings('agentic-ai')">Agentic AI</button>
+                    <button class="category-btn" data-category="cloud" onclick="filterRecordings('cloud')">Cloud & Infrastructure</button>
+                    <button class="category-btn" data-category="ams" onclick="filterRecordings('ams')">AMS Delivery</button>
+                    <button class="category-btn" data-category="governance" onclick="filterRecordings('governance')">AI Governance</button>
+                    <button class="category-btn" data-category="data" onclick="filterRecordings('data')">Data & Analytics</button>
+                    <button class="category-btn" data-category="leadership" onclick="filterRecordings('leadership')">Leadership</button>
+                </div>
+            </div>
+
+            <div class="recordings-grid" id="recordingsGrid">
+                <p style="color: #525252; padding: 2rem;">No recordings available yet. Check back soon!</p>
+            </div>
+        </div>
+        <div class="view-section" id="analyticsView">
+            <h2>Analytics</h2>
+            <p style="color: #525252; margin-top: 1rem;">Coming soon...</p>
+        </div>
+    </main>
+
+    <!-- Feedback Form Modal -->
+    <div class="modal-overlay" id="feedbackModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">📝 Course Feedback</h2>
+            </div>
+            <div class="modal-body">
+                <div class="feedback-form-section">
+                    <h4 style="margin-bottom: 1rem;">Overall Rating</h4>
+                    <div class="star-rating" id="overallRating">
+                        <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" data-rating="4">★</span>
+                        <span class="star" data-rating="5">★</span>
+                    </div>
+                </div>
+
+                <div class="rating-question">
+                    <h4>Content Quality</h4>
+                    <div class="small-star-rating" id="contentQuality">
+                        <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" data-rating="4">★</span>
+                        <span class="star" data-rating="5">★</span>
+                    </div>
+                </div>
+
+                <div class="rating-question">
+                    <h4>Delivery & Presentation</h4>
+                    <div class="small-star-rating" id="deliveryRating">
+                        <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" data-rating="4">★</span>
+                        <span class="star" data-rating="5">★</span>
+                    </div>
+                </div>
+
+                <div class="rating-question">
+                    <h4>Practical Applicability</h4>
+                    <div class="small-star-rating" id="applicabilityRating">
+                        <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" data-rating="4">★</span>
+                        <span class="star" data-rating="5">★</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">What did you find most valuable?</label>
+                    <textarea class="feedback-textarea" id="valuableComment" placeholder="Share what you found most helpful..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">What could be improved?</label>
+                    <textarea class="feedback-textarea" id="improvementComment" placeholder="Share your suggestions for improvement..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Would you recommend this training?</label>
+                    <div class="recommend-options">
+                        <button class="recommend-btn" data-recommend="yes">👍 Yes</button>
+                        <button class="recommend-btn" data-recommend="maybe">🤔 Maybe</button>
+                        <button class="recommend-btn" data-recommend="no">👎 No</button>
+                    </div>
+                </div>
+
+                <div class="anonymous-toggle">
+                    <div class="toggle-switch" id="anonymousToggle">
+                        <div class="toggle-slider"></div>
+                    </div>
+                    <label>Submit anonymously</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeFeedbackModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="submitFeedback()">Submit Feedback</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Thank You Modal -->
+    <div class="modal-overlay" id="feedbackThankYouModal">
+        <div class="modal">
+            <div class="modal-body">
+                <div class="confirmation-content">
+                    <div class="confirmation-icon">🎉</div>
+                    <h2 class="confirmation-title">Thank You for Your Feedback!</h2>
+                    <p style="color: #525252; margin: 1rem 0;">Your feedback helps us improve our training programs and deliver better learning experiences.</p>
+                    <button class="btn btn-primary" onclick="closeFeedbackThankYou()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Certificate Modal -->
+    <div class="modal-overlay" id="certificateModal">
+        <div class="modal" style="max-width: 800px;">
+            <div class="modal-body">
+                <div class="certificate-container" id="certificateContent">
+                    <div class="certificate-header">
+                        <div class="certificate-logo">IBM Consulting</div>
+                        <div class="certificate-title">Certificate of Completion</div>
+                        <div class="certificate-subtitle">This certifies that</div>
+                    </div>
+                    <div class="certificate-body">
+                        <div class="certificate-recipient" id="certRecipient">Learner Name</div>
+                        <div class="certificate-subtitle">has successfully completed</div>
+                        <div class="certificate-course" id="certCourse">Course Title</div>
+                        <div class="certificate-details">
+                            <div><strong>Date:</strong> <span id="certDate">Date</span></div>
+                            <div><strong>Duration:</strong> <span id="certDuration">Duration</span></div>
+                            <div><strong>Trainer:</strong> <span id="certTrainer">Trainer</span></div>
+                        </div>
+                    </div>
+                    <div class="certificate-footer">
+                        <div style="font-weight: 600;">IBM Consulting Learning & Development</div>
+                        <div class="certificate-id" id="certId">Certificate ID: CERT-000000</div>
+                    </div>
+                </div>
+                <div class="certificate-actions">
+                    <button class="download-cert-btn" onclick="downloadCertificate()">📥 Download Certificate</button>
+                    <button class="btn btn-secondary" onclick="closeCertificateModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enrollment Modal -->
+    <div class="modal-overlay" id="enrollModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Enrol in Course</h2>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <form id="enrollForm">
+                    <div class="form-group">
+                        <label class="form-label">Full Name *</label>
+                        <input type="text" class="form-input" id="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">IBM Band/Role *</label>
+                        <select class="form-select" id="bandRole" required>
+                            <option value="">-- Select --</option>
+                            <option value="Analyst">Analyst</option>
+                            <option value="Consultant">Consultant</option>
+                            <option value="Senior Consultant">Senior Consultant</option>
+                            <option value="Managing Consultant">Managing Consultant</option>
+                            <option value="Associate Partner">Associate Partner</option>
+                            <option value="Partner">Partner</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Location/Office *</label>
+                        <input type="text" class="form-input" id="location" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Attendance Mode *</label>
+                        <select class="form-select" id="attendanceMode" required>
+                            <option value="">-- Select --</option>
+                            <option value="In-person Singapore">In-person Singapore</option>
+                            <option value="Virtual">Virtual</option>
+                            <option value="In-person other">In-person other</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="confirmEnrollment()">Confirm Enrolment</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal-overlay" id="confirmationModal">
+        <div class="modal">
+            <div class="modal-body">
+                <div class="confirmation-content">
+                    <div class="confirmation-icon">✅</div>
+                    <h2 class="confirmation-title">Successfully Enrolled!</h2>
+                    <div class="confirmation-details" id="confirmationDetails"></div>
+                    <button class="btn btn-primary" onclick="addToCalendar()" style="margin-right: 0.5rem;">📅 Add to Calendar</button>
+                    <button class="btn btn-secondary" onclick="closeConfirmation()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const courses = [
+            {
+                id: 1,
+                title: "Building Agentic AI Systems with watsonx",
+                trainer: "Dr. Sarah Chen",
+                category: "agentic-ai",
+                categoryLabel: "Agentic AI",
+                date: "June 15, 2026",
+                duration: "3 days",
+                format: "Live",
+                status: "open",
+                enrolled: 28,
+                capacity: 40,
+                waitlist: []
+            },
+            {
+                id: 2,
+                title: "IBM Cloud Architecture Fundamentals",
+                trainer: "Michael Rodriguez",
+                category: "cloud",
+                categoryLabel: "Cloud & Infrastructure",
+                date: "June 20, 2026",
+                duration: "2 days",
+                format: "Live",
+                status: "full",
+                enrolled: 50,
+                capacity: 50,
+                waitlist: []
+            },
+            {
+                id: 3,
+                title: "AMS Service Delivery Excellence",
+                trainer: "Priya Sharma",
+                category: "ams",
+                categoryLabel: "AMS Delivery",
+                date: "June 18, 2026",
+                duration: "1 day",
+                format: "Self-Paced",
+                status: "open",
+                enrolled: 142,
+                capacity: 200,
+                waitlist: []
+            },
+            {
+                id: 4,
+                title: "AI Ethics and Governance Framework",
+                trainer: "James Wilson",
+                category: "governance",
+                categoryLabel: "AI Governance",
+                date: "June 22, 2026",
+                duration: "4 hours",
+                format: "On-Demand",
+                status: "open",
+                enrolled: 89,
+                capacity: 150,
+                waitlist: []
+            },
+            {
+                id: 5,
+                title: "Advanced Data Analytics with IBM Watson",
+                trainer: "Lisa Anderson",
+                category: "data",
+                categoryLabel: "Data & Analytics",
+                date: "July 1, 2026",
+                duration: "5 days",
+                format: "Live",
+                status: "upcoming",
+                enrolled: 12,
+                capacity: 30,
+                waitlist: []
+            },
+            {
+                id: 6,
+                title: "Leadership in Digital Transformation",
+                trainer: "Robert Kumar",
+                category: "leadership",
+                categoryLabel: "Leadership",
+                date: "June 25, 2026",
+                duration: "2 days",
+                format: "Live",
+                status: "full",
+                enrolled: 25,
+                capacity: 25,
+                waitlist: []
+            },
+            {
+                id: 7,
+                title: "Multi-Agent Systems Design Patterns",
+                trainer: "Dr. Emily Zhang",
+                category: "agentic-ai",
+                categoryLabel: "Agentic AI",
+                date: "June 28, 2026",
+                duration: "3 days",
+                format: "Live",
+                status: "open",
+                enrolled: 18,
+                capacity: 35,
+                waitlist: []
+            },
+            {
+                id: 8,
+                title: "IBM Cloud Pak for Data Administration",
+                trainer: "David Thompson",
+                category: "data",
+                categoryLabel: "Data & Analytics",
+                date: "July 5, 2026",
+                duration: "4 days",
+                format: "Self-Paced",
+                status: "open",
+                enrolled: 67,
+                capacity: 100,
+                waitlist: []
+            }
+        ];
+
+        // Pre-populated attendees
+        const attendees = {
+            1: [
+                { name: "Jennifer Lee", band: "Senior Consultant", location: "Singapore", mode: "In-person Singapore", date: "2026-05-01", status: "enrolled" },
+                { name: "Marcus Tan", band: "Consultant", location: "Singapore", mode: "Virtual", date: "2026-05-03", status: "enrolled" },
+                { name: "Aisha Rahman", band: "Managing Consultant", location: "Kuala Lumpur", mode: "Virtual", date: "2026-05-05", status: "enrolled" }
+            ],
+            2: [
+                { name: "David Wong", band: "Associate Partner", location: "Hong Kong", mode: "Virtual", date: "2026-04-28", status: "attended" },
+                { name: "Sarah Lim", band: "Senior Consultant", location: "Singapore", mode: "In-person Singapore", date: "2026-04-30", status: "completed" },
+                { name: "Raj Patel", band: "Consultant", location: "Mumbai", mode: "Virtual", date: "2026-05-02", status: "enrolled" }
+            ]
+        };
+
+        let currentCourseId = null;
+        let currentCategory = 'all';
+        let searchTerm = '';
+        let materialFieldCount = 1;
+        let uploadedSlideFile = null;
+        let recordingsCategory = 'all';
+        let recordingsSearchTerm = '';
+        
+        // Store recordings data
+        const recordings = [];
+        
+        // Store watched recordings
+        const watchedRecordings = new Set();
+        
+        // Feedback system
+        let feedbackRatings = {
+            overall: 0,
+            content: 0,
+            delivery: 0,
+            applicability: 0,
+            recommend: '',
+            anonymous: false
+        };
+        
+        // Store feedback data
+        const courseFeedback = {
+            1: [
+                { overall: 5, content: 5, delivery: 5, applicability: 4, recommend: 'yes', valuable: 'The hands-on labs were exceptional. Real-world scenarios helped solidify concepts.', improvement: 'Would love more time for Q&A sessions.', anonymous: false, name: 'Jennifer Lee', date: '2026-05-10' },
+                { overall: 5, content: 5, delivery: 4, applicability: 5, recommend: 'yes', valuable: 'Excellent coverage of agentic AI patterns and best practices.', improvement: 'More case studies from different industries would be helpful.', anonymous: false, name: 'Marcus Tan', date: '2026-05-09' },
+                { overall: 4, content: 4, delivery: 5, applicability: 4, recommend: 'yes', valuable: 'Dr. Chen\'s expertise and teaching style made complex topics accessible.', improvement: 'Could use more advanced troubleshooting examples.', anonymous: true, name: 'Anonymous', date: '2026-05-08' },
+                { overall: 5, content: 5, delivery: 5, applicability: 5, recommend: 'yes', valuable: 'The integration with watsonx was seamlessly demonstrated.', improvement: 'None - it was perfect!', anonymous: false, name: 'Aisha Rahman', date: '2026-05-07' },
+                { overall: 4, content: 4, delivery: 4, applicability: 5, recommend: 'yes', valuable: 'Practical examples that I can immediately apply to my projects.', improvement: 'More time for hands-on practice would be beneficial.', anonymous: true, name: 'Anonymous', date: '2026-05-06' },
+                { overall: 5, content: 5, delivery: 5, applicability: 4, recommend: 'yes', valuable: 'Comprehensive coverage from basics to advanced topics.', improvement: 'Perhaps split into two courses - beginner and advanced.', anonymous: false, name: 'David Chen', date: '2026-05-05' },
+                { overall: 4, content: 5, delivery: 4, applicability: 4, recommend: 'yes', valuable: 'Great balance between theory and practice.', improvement: 'More real-world deployment scenarios.', anonymous: false, name: 'Sarah Kim', date: '2026-05-04' },
+                { overall: 5, content: 5, delivery: 5, applicability: 5, recommend: 'yes', valuable: 'Best AI training I\'ve attended. Highly practical and relevant.', improvement: 'Nothing significant - excellent course overall.', anonymous: false, name: 'Raj Patel', date: '2026-05-03' }
+            ],
+            2: [
+                { overall: 5, content: 5, delivery: 5, applicability: 5, recommend: 'yes', valuable: 'Michael\'s deep knowledge of IBM Cloud architecture is impressive.', improvement: 'Would appreciate more hands-on labs.', anonymous: false, name: 'David Wong', date: '2026-05-02' },
+                { overall: 4, content: 5, delivery: 4, applicability: 4, recommend: 'yes', valuable: 'Solid foundation in cloud architecture principles.', improvement: 'More focus on cost optimization strategies.', anonymous: false, name: 'Sarah Lim', date: '2026-05-01' },
+                { overall: 5, content: 5, delivery: 5, applicability: 5, recommend: 'yes', valuable: 'Excellent coverage of security best practices.', improvement: 'Could include more multi-cloud scenarios.', anonymous: true, name: 'Anonymous', date: '2026-04-30' },
+                { overall: 4, content: 4, delivery: 5, applicability: 4, recommend: 'yes', valuable: 'Great networking session with other cloud professionals.', improvement: 'More time for architecture design exercises.', anonymous: false, name: 'James Wilson', date: '2026-04-29' },
+                { overall: 5, content: 5, delivery: 4, applicability: 5, recommend: 'yes', valuable: 'The migration strategies section was particularly valuable.', improvement: 'More case studies from large enterprises.', anonymous: false, name: 'Lisa Chen', date: '2026-04-28' },
+                { overall: 4, content: 4, delivery: 4, applicability: 4, recommend: 'maybe', valuable: 'Good overview of IBM Cloud services.', improvement: 'More depth on Kubernetes and containerization.', anonymous: true, name: 'Anonymous', date: '2026-04-27' },
+                { overall: 5, content: 5, delivery: 5, applicability: 5, recommend: 'yes', valuable: 'Practical insights that I can apply immediately.', improvement: 'Perhaps extend to 3 days to cover more topics.', anonymous: false, name: 'Tom Anderson', date: '2026-04-26' },
+                { overall: 5, content: 5, delivery: 5, applicability: 4, recommend: 'yes', valuable: 'Excellent trainer with real-world experience.', improvement: 'More interactive Q&A time.', anonymous: false, name: 'Maria Garcia', date: '2026-04-25' },
+                { overall: 4, content: 5, delivery: 4, applicability: 5, recommend: 'yes', valuable: 'Comprehensive and well-structured content.', improvement: 'Include more troubleshooting scenarios.', anonymous: true, name: 'Anonymous', date: '2026-04-24' },
+                { overall: 5, content: 5, delivery: 5, applicability: 5, recommend: 'yes', valuable: 'Best cloud architecture training available.', improvement: 'None - exceeded expectations!', anonymous: false, name: 'Alex Kumar', date: '2026-04-23' }
+            ]
+        };
+        
+        // Store certificates
+        const certificates = {};
+        
+        // Store user's completed courses
+        const userCompletedCourses = [];
+
+        function renderCourses(filteredCourses) {
+            const grid = document.getElementById('courseGrid');
+            grid.innerHTML = '';
+
+            filteredCourses.forEach(course => {
+                const progressPercent = Math.round((course.enrolled / course.capacity) * 100);
+                let statusLabel = course.status === 'open' ? 'Open' :
+                                  course.status === 'full' ? 'Full' :
+                                  course.status === 'on-demand' ? 'On-Demand' : 'Upcoming';
+                
+                const card = document.createElement('div');
+                card.className = 'course-card';
+                
+                let buttonHtml = '';
+                if (course.status === 'on-demand') {
+                    buttonHtml = `<button class="enrol-btn" onclick="viewRecording(${course.id})">View Recording</button>`;
+                } else if (course.status === 'full') {
+                    buttonHtml = `<button class="waitlist-btn" onclick="openEnrollModal(${course.id}, true)">Join Waitlist</button>`;
+                } else {
+                    buttonHtml = `<button class="enrol-btn" onclick="openEnrollModal(${course.id}, false)">Enrol Now</button>`;
+                }
+                
+                // Add recording/materials links if available
+                let recordingLinksHtml = '';
+                if (course.recordingUrl || course.materials) {
+                    recordingLinksHtml = '<div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;">';
+                    if (course.recordingUrl) {
+                        recordingLinksHtml += `<a href="${course.recordingUrl}" target="_blank" style="color: #0F62FE; text-decoration: none; font-size: 0.875rem; display: block; margin-bottom: 0.5rem;">🎥 View Recording</a>`;
+                    }
+                    if (course.slideFile) {
+                        recordingLinksHtml += `<div style="color: #0F62FE; font-size: 0.875rem; margin-bottom: 0.5rem;">📄 ${course.slideFile}</div>`;
+                    }
+                    recordingLinksHtml += '</div>';
+                }
+                
+                // Add feedback summary if available
+                let feedbackHtml = '';
+                if (courseFeedback[course.id] && courseFeedback[course.id].length > 0) {
+                    const feedback = courseFeedback[course.id];
+                    const avgOverall = (feedback.reduce((sum, f) => sum + f.overall, 0) / feedback.length).toFixed(1);
+                    const avgContent = (feedback.reduce((sum, f) => sum + f.content, 0) / feedback.length).toFixed(1);
+                    const avgDelivery = (feedback.reduce((sum, f) => sum + f.delivery, 0) / feedback.length).toFixed(1);
+                    const avgApplicability = (feedback.reduce((sum, f) => sum + f.applicability, 0) / feedback.length).toFixed(1);
+                    
+                    const stars = '★'.repeat(Math.round(avgOverall)) + '☆'.repeat(5 - Math.round(avgOverall));
+                    
+                    feedbackHtml = `
+                        <div class="feedback-summary">
+                            <div class="rating-display">
+                                <span class="rating-stars">${stars}</span>
+                                <span style="font-weight: 600; color: #161616;">${avgOverall}</span>
+                                <span class="rating-count">(${feedback.length} reviews)</span>
+                            </div>
+                            <div class="rating-breakdown">
+                                <div class="rating-bar-item">
+                                    <div class="rating-bar-label">Content Quality</div>
+                                    <div class="rating-bar-container">
+                                        <div class="rating-bar">
+                                            <div class="rating-bar-fill" style="width: ${(avgContent/5)*100}%"></div>
+                                        </div>
+                                        <span class="rating-bar-value">${avgContent}</span>
+                                    </div>
+                                </div>
+                                <div class="rating-bar-item">
+                                    <div class="rating-bar-label">Delivery</div>
+                                    <div class="rating-bar-container">
+                                        <div class="rating-bar">
+                                            <div class="rating-bar-fill" style="width: ${(avgDelivery/5)*100}%"></div>
+                                        </div>
+                                        <span class="rating-bar-value">${avgDelivery}</span>
+                                    </div>
+                                </div>
+                                <div class="rating-bar-item">
+                                    <div class="rating-bar-label">Applicability</div>
+                                    <div class="rating-bar-container">
+                                        <div class="rating-bar">
+                                            <div class="rating-bar-fill" style="width: ${(avgApplicability/5)*100}%"></div>
+                                        </div>
+                                        <span class="rating-bar-value">${avgApplicability}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                card.innerHTML = `
+                    <div class="course-category-banner category-${course.category}">
+                        ${course.categoryLabel}
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">${course.title}</h3>
+                        <div class="course-trainer">👤 ${course.trainer}</div>
+                        <div class="course-meta">
+                            <span>📅 ${course.date}</span>
+                            <span>⏱️ ${course.duration}</span>
+                        </div>
+                        <div class="course-badges">
+                            <span class="badge badge-format">${course.format}</span>
+                            <span class="badge badge-status-${course.status} ${course.status === 'on-demand' ? 'badge-on-demand' : ''}">${statusLabel}</span>
+                        </div>
+                        ${feedbackHtml}
+                        <div class="enrolment-progress">
+                            <div class="progress-label">
+                                <span>Enrolment</span>
+                                <span>${course.enrolled}/${course.capacity}</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${progressPercent}%"></div>
+                            </div>
+                        </div>
+                        ${recordingLinksHtml}
+                        ${buttonHtml}
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterCourses() {
+            let filtered = courses;
+
+            if (currentCategory !== 'all') {
+                filtered = filtered.filter(c => c.category === currentCategory);
+            }
+
+            if (searchTerm) {
+                filtered = filtered.filter(c => 
+                    c.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    c.trainer.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+            }
+
+            renderCourses(filtered);
+        }
+
+        function openEnrollModal(courseId, isWaitlist) {
+            currentCourseId = courseId;
+            const course = courses.find(c => c.id === courseId);
+            const modal = document.getElementById('enrollModal');
+            const title = document.getElementById('modalTitle');
+            
+            title.textContent = isWaitlist ? `Join Waitlist - ${course.title}` : `Enrol in ${course.title}`;
+            modal.classList.add('active');
+            
+            // Reset form
+            document.getElementById('enrollForm').reset();
+        }
+
+        function closeModal() {
+            document.getElementById('enrollModal').classList.remove('active');
+            currentCourseId = null;
+        }
+
+        function confirmEnrollment() {
+            const form = document.getElementById('enrollForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const course = courses.find(c => c.id === currentCourseId);
+            const fullName = document.getElementById('fullName').value;
+            const bandRole = document.getElementById('bandRole').value;
+            const location = document.getElementById('location').value;
+            const attendanceMode = document.getElementById('attendanceMode').value;
+
+            const newAttendee = {
+                name: fullName,
+                band: bandRole,
+                location: location,
+                mode: attendanceMode,
+                date: new Date().toISOString().split('T')[0],
+                status: 'enrolled'
+            };
+
+            // Add to attendees
+            if (!attendees[currentCourseId]) {
+                attendees[currentCourseId] = [];
+            }
+            attendees[currentCourseId].push(newAttendee);
+
+            // Update course enrollment
+            if (course.status === 'full') {
+                course.waitlist.push(newAttendee);
+            } else {
+                course.enrolled++;
+                if (course.enrolled >= course.capacity) {
+                    course.status = 'full';
+                }
+            }
+
+            // Update total learners
+            document.getElementById('totalLearners').textContent = (parseInt(document.getElementById('totalLearners').textContent.replace(',', '')) + 1).toLocaleString();
+
+            // Show confirmation
+            showConfirmation(course, newAttendee);
+            closeModal();
+            filterCourses();
+        }
+
+        function showConfirmation(course, attendee) {
+            const modal = document.getElementById('confirmationModal');
+            const details = document.getElementById('confirmationDetails');
+            
+            details.innerHTML = `
+                <div class="confirmation-detail"><strong>Course:</strong> ${course.title}</div>
+                <div class="confirmation-detail"><strong>Trainer:</strong> ${course.trainer}</div>
+                <div class="confirmation-detail"><strong>Date:</strong> ${course.date}</div>
+                <div class="confirmation-detail"><strong>Duration:</strong> ${course.duration}</div>
+                <div class="confirmation-detail"><strong>Format:</strong> ${course.format}</div>
+                <div class="confirmation-detail"><strong>Your Attendance Mode:</strong> ${attendee.mode}</div>
+            `;
+            
+            modal.classList.add('active');
+        }
+
+        function closeConfirmation() {
+            document.getElementById('confirmationModal').classList.remove('active');
+        }
+
+        function addToCalendar() {
+            const course = courses.find(c => c.id === currentCourseId);
+            alert(`Calendar event would be created for:\n${course.title}\n${course.date}\n\n(This is a demo - actual calendar integration would be implemented here)`);
+        }
+
+        // Navigation
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+                
+                document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active'));
+                const viewId = this.dataset.view + 'View';
+                document.getElementById(viewId).classList.add('active');
+                
+                if (this.dataset.view === 'admin') {
+                    loadAdminView();
+                }
+            });
+        });
+
+        // Category filters
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentCategory = this.dataset.category;
+                filterCourses();
+            });
+        });
+
+        // Search
+        document.getElementById('searchBox').addEventListener('input', function(e) {
+            searchTerm = e.target.value;
+            filterCourses();
+        });
+
+        // Admin functions
+        function loadAdminView() {
+            const select = document.getElementById('courseSelect');
+            select.innerHTML = '<option value="">-- Select a course --</option>';
+            
+            courses.forEach(course => {
+                const option = document.createElement('option');
+                option.value = course.id;
+                option.textContent = course.title;
+                select.appendChild(option);
+            });
+            
+            select.onchange = function() {
+                if (this.value) {
+                    loadRoster(parseInt(this.value));
+                    showUploadPanel(parseInt(this.value));
+                } else {
+                    document.getElementById('rosterContainer').style.display = 'none';
+                    document.getElementById('uploadContentPanel').style.display = 'none';
+                }
+            };
+        }
+
+        function loadRoster(courseId) {
+            const tbody = document.getElementById('rosterTableBody');
+            const container = document.getElementById('rosterContainer');
+            const courseAttendees = attendees[courseId] || [];
+            
+            tbody.innerHTML = '';
+            
+            courseAttendees.forEach((attendee, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${attendee.name}</td>
+                    <td>${attendee.band}</td>
+                    <td>${attendee.location}</td>
+                    <td>${attendee.mode}</td>
+                    <td>${attendee.date}</td>
+                    <td>
+                        <select class="status-select" onchange="updateAttendeeStatus(${courseId}, ${index}, this.value, '${attendee.name}')">
+                            <option value="enrolled" ${attendee.status === 'enrolled' ? 'selected' : ''}>Enrolled</option>
+                            <option value="attended" ${attendee.status === 'attended' ? 'selected' : ''}>Attended</option>
+                            <option value="completed" ${attendee.status === 'completed' ? 'selected' : ''}>Completed</option>
+                            <option value="no-show" ${attendee.status === 'no-show' ? 'selected' : ''}>No-show</option>
+                        </select>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+            
+            container.style.display = courseAttendees.length > 0 ? 'block' : 'none';
+        }
+        
+        function updateAttendeeStatus(courseId, attendeeIndex, newStatus, attendeeName) {
+            const oldStatus = attendees[courseId][attendeeIndex].status;
+            attendees[courseId][attendeeIndex].status = newStatus;
+            
+            // If status changed to completed, trigger feedback and certificate
+            if (newStatus === 'completed' && oldStatus !== 'completed') {
+                const course = courses.find(c => c.id === courseId);
+                
+                // Generate certificate
+                generateCertificate(courseId, attendeeName);
+                
+                // Show feedback prompt after a short delay
+                setTimeout(() => {
+                    if (confirm(`${attendeeName} has completed "${course.title}".\n\nWould you like to request feedback from this learner?`)) {
+                        openFeedbackModal(courseId, attendeeName);
+                    }
+                }, 500);
+            }
+        }
+        
+        // Upload Content Panel Functions
+        function showUploadPanel(courseId) {
+            const course = courses.find(c => c.id === courseId);
+            const panel = document.getElementById('uploadContentPanel');
+            
+            // Check if course has completed attendees
+            const courseAttendees = attendees[courseId] || [];
+            const hasCompleted = courseAttendees.some(a => a.status === 'completed' || a.status === 'attended');
+            
+            if (hasCompleted || course.status === 'full') {
+                panel.style.display = 'block';
+                currentCourseId = courseId;
+                
+                // Reset form
+                document.getElementById('recordingUrl').value = course.recordingUrl || '';
+                document.getElementById('slideFileInput').value = '';
+                uploadedSlideFile = course.slideFile || null;
+                
+                // Update slide upload area
+                const slideArea = document.getElementById('slideUploadArea');
+                const slideText = document.getElementById('slideUploadText');
+                if (uploadedSlideFile) {
+                    slideArea.classList.add('has-file');
+                    slideText.textContent = `✓ ${uploadedSlideFile}`;
+                } else {
+                    slideArea.classList.remove('has-file');
+                    slideText.textContent = 'Click to upload slide deck (PDF, PPTX)';
+                }
+                
+                // Reset materials
+                materialFieldCount = 1;
+                const container = document.getElementById('materialsContainer');
+                container.innerHTML = `
+                    <div class="material-link-input">
+                        <input type="text" class="form-input" placeholder="Material Label (e.g., Reference Guide)" id="materialLabel1">
+                        <input type="url" class="form-input" placeholder="https://..." id="materialUrl1">
+                    </div>
+                `;
+                
+                // Load existing materials if any
+                if (course.materials && course.materials.length > 0) {
+                    container.innerHTML = '';
+                    course.materials.forEach((mat, idx) => {
+                        const num = idx + 1;
+                        container.innerHTML += `
+                            <div class="material-link-input">
+                                <input type="text" class="form-input" placeholder="Material Label" id="materialLabel${num}" value="${mat.label}">
+                                <input type="url" class="form-input" placeholder="https://..." id="materialUrl${num}" value="${mat.url}">
+                            </div>
+                        `;
+                        materialFieldCount = num;
+                    });
+                }
+                
+                // Update button state
+                updatePublishButton();
+            } else {
+                panel.style.display = 'none';
+            }
+        }
+        
+        function handleSlideUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                uploadedSlideFile = file.name;
+                const slideArea = document.getElementById('slideUploadArea');
+                const slideText = document.getElementById('slideUploadText');
+                slideArea.classList.add('has-file');
+                slideText.textContent = `✓ ${file.name}`;
+                updatePublishButton();
+            }
+        }
+        
+        function addMaterialField() {
+            if (materialFieldCount >= 3) {
+                alert('Maximum 3 materials allowed');
+                return;
+            }
+            
+            materialFieldCount++;
+            const container = document.getElementById('materialsContainer');
+            const newField = document.createElement('div');
+            newField.className = 'material-link-input';
+            newField.innerHTML = `
+                <input type="text" class="form-input" placeholder="Material Label (e.g., Reference Guide)" id="materialLabel${materialFieldCount}">
+                <input type="url" class="form-input" placeholder="https://..." id="materialUrl${materialFieldCount}">
+            `;
+            container.appendChild(newField);
+            
+            if (materialFieldCount >= 3) {
+                document.getElementById('addMaterialBtn').style.display = 'none';
+            }
+        }
+        
+        function updatePublishButton() {
+            const recordingUrl = document.getElementById('recordingUrl').value;
+            const publishBtn = document.getElementById('publishBtn');
+            
+            if (recordingUrl && uploadedSlideFile) {
+                publishBtn.disabled = false;
+            } else {
+                publishBtn.disabled = true;
+            }
+        }
+        
+        function publishContent() {
+            const course = courses.find(c => c.id === currentCourseId);
+            if (!course) return;
+            
+            const recordingUrl = document.getElementById('recordingUrl').value;
+            
+            if (!recordingUrl || !uploadedSlideFile) {
+                alert('Please provide both recording URL and slide deck');
+                return;
+            }
+            
+            // Collect materials
+            const materials = [];
+            for (let i = 1; i <= materialFieldCount; i++) {
+                const label = document.getElementById(`materialLabel${i}`).value;
+                const url = document.getElementById(`materialUrl${i}`).value;
+                if (label && url) {
+                    materials.push({ label, url });
+                }
+            }
+            
+            // Update course
+            course.recordingUrl = recordingUrl;
+            course.slideFile = uploadedSlideFile;
+            course.materials = materials;
+            course.status = 'on-demand';
+            course.format = 'On-Demand';
+            course.publishedDate = new Date().toISOString();
+            
+            // Add to recordings
+            recordings.push({
+                id: course.id,
+                title: course.title,
+                trainer: course.trainer,
+                category: course.category,
+                categoryLabel: course.categoryLabel,
+                date: course.date,
+                duration: course.duration,
+                recordingUrl: recordingUrl,
+                slideFile: uploadedSlideFile,
+                materials: materials,
+                publishedDate: course.publishedDate
+            });
+            
+            // Show success message
+            alert(`✅ Content published successfully!\n\n"${course.title}" is now available as On-Demand in the Recordings section.`);
+            
+            // Refresh course display
+            filterCourses();
+            renderRecordings();
+            
+            // Reset form
+            document.getElementById('uploadContentPanel').style.display = 'none';
+        }
+        
+        // Recordings Section Functions
+        function renderRecordings() {
+            const grid = document.getElementById('recordingsGrid');
+            
+            if (recordings.length === 0) {
+                grid.innerHTML = '<p style="color: #525252; padding: 2rem;">No recordings available yet. Check back soon!</p>';
+                return;
+            }
+            
+            let filtered = recordings;
+            
+            // Apply category filter
+            if (recordingsCategory !== 'all') {
+                filtered = filtered.filter(r => r.category === recordingsCategory);
+            }
+            
+            // Apply search filter
+            if (recordingsSearchTerm) {
+                filtered = filtered.filter(r => 
+                    r.title.toLowerCase().includes(recordingsSearchTerm.toLowerCase()) ||
+                    r.trainer.toLowerCase().includes(recordingsSearchTerm.toLowerCase())
+                );
+            }
+            
+            if (filtered.length === 0) {
+                grid.innerHTML = '<p style="color: #525252; padding: 2rem;">No recordings match your search criteria.</p>';
+                return;
+            }
+            
+            grid.innerHTML = '';
+            
+            filtered.forEach(recording => {
+                const card = document.createElement('div');
+                card.className = 'recording-card';
+                
+                // Check if recording is new (published in last 7 days)
+                const publishedDate = new Date(recording.publishedDate);
+        
+        // Feedback System Functions
+        function openFeedbackModal(courseId, attendeeName) {
+            currentCourseId = courseId;
+            const modal = document.getElementById('feedbackModal');
+            modal.classList.add('active');
+            
+            // Reset ratings
+            feedbackRatings = {
+                overall: 0,
+                content: 0,
+                delivery: 0,
+                applicability: 0,
+                recommend: '',
+                anonymous: false
+            };
+            
+            // Reset form
+            document.querySelectorAll('.star').forEach(star => star.classList.remove('active'));
+            document.querySelectorAll('.recommend-btn').forEach(btn => btn.classList.remove('selected'));
+            document.getElementById('valuableComment').value = '';
+            document.getElementById('improvementComment').value = '';
+            document.getElementById('anonymousToggle').classList.remove('active');
+            
+            // Setup star rating interactions
+            setupStarRatings();
+            setupRecommendButtons();
+            setupAnonymousToggle();
+        }
+        
+        function setupStarRatings() {
+            const ratingContainers = {
+                'overallRating': 'overall',
+                'contentQuality': 'content',
+                'deliveryRating': 'delivery',
+                'applicabilityRating': 'applicability'
+            };
+            
+            Object.keys(ratingContainers).forEach(containerId => {
+                const container = document.getElementById(containerId);
+                const stars = container.querySelectorAll('.star');
+                const ratingKey = ratingContainers[containerId];
+                
+                stars.forEach(star => {
+                    star.addEventListener('mouseenter', function() {
+                        const rating = parseInt(this.dataset.rating);
+                        stars.forEach((s, idx) => {
+                            if (idx < rating) {
+                                s.classList.add('active');
+                            } else {
+                                s.classList.remove('active');
+                            }
+                        });
+                    });
+                    
+                    star.addEventListener('click', function() {
+                        const rating = parseInt(this.dataset.rating);
+                        feedbackRatings[ratingKey] = rating;
+                    });
+                });
+                
+                container.addEventListener('mouseleave', function() {
+                    const currentRating = feedbackRatings[ratingKey];
+                    stars.forEach((s, idx) => {
+                        if (idx < currentRating) {
+                            s.classList.add('active');
+                        } else {
+                            s.classList.remove('active');
+                        }
+                    });
+                });
+            });
+        }
+        
+        function setupRecommendButtons() {
+            document.querySelectorAll('.recommend-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.recommend-btn').forEach(b => b.classList.remove('selected'));
+                    this.classList.add('selected');
+                    feedbackRatings.recommend = this.dataset.recommend;
+                });
+            });
+        }
+        
+        function setupAnonymousToggle() {
+            const toggle = document.getElementById('anonymousToggle');
+            toggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                feedbackRatings.anonymous = this.classList.contains('active');
+            });
+        }
+        
+        function closeFeedbackModal() {
+            document.getElementById('feedbackModal').classList.remove('active');
+        }
+        
+        function submitFeedback() {
+            // Validate ratings
+            if (feedbackRatings.overall === 0 || feedbackRatings.content === 0 || 
+                feedbackRatings.delivery === 0 || feedbackRatings.applicability === 0) {
+                alert('Please provide all ratings before submitting.');
+                return;
+            }
+            
+            if (!feedbackRatings.recommend) {
+                alert('Please indicate if you would recommend this training.');
+                return;
+            }
+            
+            const valuable = document.getElementById('valuableComment').value;
+            const improvement = document.getElementById('improvementComment').value;
+            
+            if (!valuable || !improvement) {
+                alert('Please provide comments for both questions.');
+                return;
+            }
+            
+            // Create feedback object
+            const feedback = {
+                overall: feedbackRatings.overall,
+                content: feedbackRatings.content,
+                delivery: feedbackRatings.delivery,
+                applicability: feedbackRatings.applicability,
+                recommend: feedbackRatings.recommend,
+                valuable: valuable,
+                improvement: improvement,
+                anonymous: feedbackRatings.anonymous,
+                name: feedbackRatings.anonymous ? 'Anonymous' : 'Current User',
+                date: new Date().toISOString().split('T')[0]
+            };
+            
+            // Add to feedback data
+            if (!courseFeedback[currentCourseId]) {
+                courseFeedback[currentCourseId] = [];
+            }
+            courseFeedback[currentCourseId].push(feedback);
+            
+            // Close feedback modal and show thank you
+            closeFeedbackModal();
+            document.getElementById('feedbackThankYouModal').classList.add('active');
+            
+            // Refresh course display to show updated ratings
+            filterCourses();
+        }
+        
+        function closeFeedbackThankYou() {
+            document.getElementById('feedbackThankYouModal').classList.remove('active');
+        }
+        
+        // Certificate System Functions
+        function generateCertificate(courseId, learnerName) {
+            const course = courses.find(c => c.id === courseId);
+            const certId = `CERT-${courseId}-${Date.now().toString().slice(-6)}`;
+            
+            const certificate = {
+                id: certId,
+                courseId: courseId,
+                courseTitle: course.title,
+                learnerName: learnerName,
+                trainer: course.trainer,
+                duration: course.duration,
+                dateCompleted: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+                dateIssued: new Date().toISOString()
+            };
+            
+            certificates[certId] = certificate;
+            
+            // Add to user's completed courses
+            if (!userCompletedCourses.find(c => c.courseId === courseId && c.learnerName === learnerName)) {
+                userCompletedCourses.push({
+                    courseId: courseId,
+                    learnerName: learnerName,
+                    certId: certId,
+                    dateCompleted: certificate.dateCompleted
+                });
+            }
+            
+            // Update My Learning view
+            renderMyLearning();
+        }
+        
+        function viewCertificate(certId) {
+            const cert = certificates[certId];
+            if (!cert) return;
+            
+            document.getElementById('certRecipient').textContent = cert.learnerName;
+            document.getElementById('certCourse').textContent = cert.courseTitle;
+            document.getElementById('certDate').textContent = cert.dateCompleted;
+            document.getElementById('certDuration').textContent = cert.duration;
+            document.getElementById('certTrainer').textContent = cert.trainer;
+            document.getElementById('certId').textContent = `Certificate ID: ${cert.id}`;
+            
+            document.getElementById('certificateModal').classList.add('active');
+        }
+        
+        function closeCertificateModal() {
+            document.getElementById('certificateModal').classList.remove('active');
+        }
+        
+        function downloadCertificate() {
+            alert('Certificate download functionality would be implemented here.\n\nIn a production environment, this would generate a PDF certificate with proper formatting and branding.');
+        }
+        
+        function renderMyLearning() {
+            const grid = document.getElementById('myLearningGrid');
+            
+            if (userCompletedCourses.length === 0) {
+                grid.innerHTML = '<p style="color: #525252; padding: 2rem;">No completed courses yet. Enroll in courses to get started!</p>';
+                return;
+            }
+            
+            grid.innerHTML = '';
+            
+            userCompletedCourses.forEach(completion => {
+                const course = courses.find(c => c.id === completion.courseId);
+                const cert = certificates[completion.certId];
+                
+                const card = document.createElement('div');
+                card.className = 'learning-card';
+                
+                card.innerHTML = `
+                    <h3>${course.title}</h3>
+                    <div class="learning-status status-completed">✓ Completed</div>
+                    <div style="font-size: 0.875rem; color: #525252; margin-bottom: 1rem;">
+                        <div><strong>Trainer:</strong> ${course.trainer}</div>
+                        <div><strong>Completed:</strong> ${completion.dateCompleted}</div>
+                        <div><strong>Duration:</strong> ${course.duration}</div>
+                    </div>
+                    <button class="btn btn-primary" onclick="viewCertificate('${completion.certId}')" style="width: 100%; margin-bottom: 0.5rem;">
+                        🏆 View Certificate
+                    </button>
+                    <button class="btn btn-secondary" onclick="downloadCertificate()" style="width: 100%;">
+                        📥 Download Certificate
+                    </button>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+        
+        // Update navigation to load My Learning
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                if (this.dataset.view === 'my-learning') {
+                    renderMyLearning();
+                }
+            });
+        });
+                const daysSincePublished = Math.floor((new Date() - publishedDate) / (1000 * 60 * 60 * 24));
+                const isNew = daysSincePublished <= 7;
+                
+                // Check if watched
+                const isWatched = watchedRecordings.has(recording.id);
+                
+                // Build materials HTML
+                let materialsHtml = '';
+                if (recording.materials && recording.materials.length > 0) {
+                    materialsHtml = `
+                        <div class="materials-section">
+                            <div class="materials-title">📚 Additional Materials</div>
+                            <div class="material-links">
+                                ${recording.materials.map(mat => `
+                                    <a href="${mat.url}" target="_blank" class="material-link">
+                                        📄 ${mat.label}
+                                    </a>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                card.innerHTML = `
+                    ${isNew ? '<div class="new-badge">NEW</div>' : ''}
+                    <div class="video-placeholder category-${recording.category}">
+                        <div>▶️</div>
+                    </div>
+                    <div class="recording-content">
+                        <h3 class="recording-title">${recording.title}</h3>
+                        <div class="course-trainer">👤 ${recording.trainer}</div>
+                        <div class="recording-meta">
+                            <span>📅 ${recording.date}</span>
+                            <span>⏱️ ${recording.duration}</span>
+                            <span class="badge badge-format">${recording.categoryLabel}</span>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <a href="${recording.recordingUrl}" target="_blank" class="material-link" style="font-weight: 600;">
+                                🎥 Watch Recording
+                            </a>
+                        </div>
+                        ${recording.slideFile ? `
+                            <div style="margin-top: 0.5rem;">
+                                <div class="material-link" style="cursor: default;">
+                                    📄 ${recording.slideFile}
+                                </div>
+                            </div>
+                        ` : ''}
+                        ${materialsHtml}
+                        <button class="watched-btn ${isWatched ? 'watched' : ''}" onclick="toggleWatched(${recording.id})">
+                            ${isWatched ? '✓ Watched' : 'Mark as Watched'}
+                        </button>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+        
+        function filterRecordings(category) {
+            recordingsCategory = category;
+            
+            // Update active button
+            document.querySelectorAll('#recordingsView .category-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.category === category) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            renderRecordings();
+        }
+        
+        function toggleWatched(recordingId) {
+            if (watchedRecordings.has(recordingId)) {
+                watchedRecordings.delete(recordingId);
+            } else {
+                watchedRecordings.add(recordingId);
+            }
+            renderRecordings();
+        }
+        
+        function viewRecording(courseId) {
+            // Switch to recordings view
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+            document.querySelector('[data-view="recordings"]').classList.add('active');
+            
+            document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active'));
+            document.getElementById('recordingsView').classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Recordings search
+        document.getElementById('recordingsSearchBox').addEventListener('input', function(e) {
+            recordingsSearchTerm = e.target.value;
+            renderRecordings();
+        });
+        
+        // Update recording URL input listener
+        document.getElementById('recordingUrl').addEventListener('input', updatePublishButton);
+
+        function updateAttendeeStatus(courseId, attendeeIndex, newStatus) {
+            attendees[courseId][attendeeIndex].status = newStatus;
+        }
+
+        function exportRoster() {
+            const courseId = parseInt(document.getElementById('courseSelect').value);
+            if (!courseId) {
+                alert('Please select a course first');
+                return;
+            }
+            
+            const course = courses.find(c => c.id === courseId);
+            const courseAttendees = attendees[courseId] || [];
+            
+            let csv = 'Name,Band/Role,Location,Attendance Mode,Enrolment Date,Status\n';
+            courseAttendees.forEach(attendee => {
+                csv += `"${attendee.name}","${attendee.band}","${attendee.location}","${attendee.mode}","${attendee.date}","${attendee.status}"\n`;
+            });
+            
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${course.title.replace(/[^a-z0-9]/gi, '_')}_roster.csv`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Initialize
+        renderCourses(courses);
+    </script>
+</body>
+</html>
