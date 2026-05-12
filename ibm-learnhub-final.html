@@ -561,6 +561,596 @@
             display: none;
         }
 
+        /* Upload Content Panel Styles */
+        .upload-content-panel {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin-top: 2rem;
+            border: 2px solid #0F62FE;
+        }
+
+        .upload-content-panel h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #161616;
+            margin-bottom: 1.5rem;
+        }
+
+        .upload-section {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .upload-section:last-child {
+            border-bottom: none;
+        }
+
+        .upload-section h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #161616;
+            margin-bottom: 1rem;
+        }
+
+        .file-upload-area {
+            border: 2px dashed #e0e0e0;
+            border-radius: 4px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .file-upload-area:hover {
+            border-color: #0F62FE;
+            background: #f4f4f4;
+        }
+
+        .file-upload-area.has-file {
+            border-color: #24A148;
+            background: #DEFBE6;
+        }
+
+        .upload-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .material-link-input {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .material-link-input input {
+            flex: 1;
+        }
+
+        .add-material-btn {
+            background: #0F62FE;
+            color: #ffffff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .add-material-btn:hover {
+            background: #0353E9;
+        }
+
+        .publish-btn {
+            background: #24A148;
+            color: #ffffff;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .publish-btn:hover {
+            background: #1E8A3C;
+        }
+
+        .publish-btn:disabled {
+            background: #c6c6c6;
+            cursor: not-allowed;
+        }
+
+        /* Recordings Section Styles */
+        .recordings-header {
+            margin-bottom: 2rem;
+        }
+
+        .recordings-filters {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+        }
+
+        .recordings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .recording-card {
+            background: #ffffff;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+        }
+
+        .recording-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .new-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #FA4D56;
+            color: #ffffff;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 10;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 200px;
+            background: #161616;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 3rem;
+            position: relative;
+        }
+
+        .recording-content {
+            padding: 1.5rem;
+        }
+
+        .recording-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #161616;
+        }
+
+        .recording-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            color: #525252;
+            flex-wrap: wrap;
+        }
+
+        .materials-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .materials-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #161616;
+            margin-bottom: 0.5rem;
+        }
+
+        .material-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .material-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #0F62FE;
+            text-decoration: none;
+            font-size: 0.875rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .material-link:hover {
+            background: #f4f4f4;
+        }
+
+        .watched-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: #ffffff;
+            color: #0F62FE;
+            border: 1px solid #0F62FE;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 1rem;
+        }
+
+        .watched-btn:hover {
+            background: #0F62FE;
+            color: #ffffff;
+        }
+
+        .watched-btn.watched {
+            background: #24A148;
+            color: #ffffff;
+            border-color: #24A148;
+        }
+
+        .badge-on-demand {
+            background: #8A3FFC;
+            color: #ffffff;
+        }
+
+        /* Feedback Form Styles */
+        .feedback-form-section {
+            margin-top: 1.5rem;
+        }
+
+        .star-rating {
+            display: flex;
+            gap: 0.5rem;
+            font-size: 2rem;
+            margin: 0.5rem 0;
+        }
+
+        .star {
+            cursor: pointer;
+            color: #e0e0e0;
+            transition: color 0.2s;
+        }
+
+        .star:hover,
+        .star.active {
+            color: #F1C21B;
+        }
+
+        .rating-question {
+            margin-bottom: 1.5rem;
+        }
+
+        .rating-question h4 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #161616;
+            margin-bottom: 0.5rem;
+        }
+
+        .small-star-rating {
+            display: flex;
+            gap: 0.25rem;
+            font-size: 1.25rem;
+        }
+
+        .feedback-textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 0.75rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 0.875rem;
+            resize: vertical;
+        }
+
+        .feedback-textarea:focus {
+            outline: 2px solid #0F62FE;
+            border-color: #0F62FE;
+        }
+
+        .recommend-options {
+            display: flex;
+            gap: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        .recommend-btn {
+            flex: 1;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            background: #ffffff;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .recommend-btn:hover {
+            border-color: #0F62FE;
+        }
+
+        .recommend-btn.selected {
+            border-color: #0F62FE;
+            background: #D0E2FF;
+            color: #0F62FE;
+        }
+
+        .anonymous-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 48px;
+            height: 24px;
+            background: #e0e0e0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .toggle-switch.active {
+            background: #0F62FE;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: #ffffff;
+            border-radius: 50%;
+            transition: transform 0.2s;
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(24px);
+        }
+
+        /* Feedback Display Styles */
+        .feedback-summary {
+            background: #f4f4f4;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+
+        .rating-display {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .rating-stars {
+            color: #F1C21B;
+            font-size: 1.25rem;
+        }
+
+        .rating-count {
+            color: #525252;
+            font-size: 0.875rem;
+        }
+
+        .rating-breakdown {
+            margin-top: 1rem;
+        }
+
+        .rating-bar-item {
+            margin-bottom: 0.75rem;
+        }
+
+        .rating-bar-label {
+            font-size: 0.75rem;
+            color: #525252;
+            margin-bottom: 0.25rem;
+        }
+
+        .rating-bar-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .rating-bar {
+            flex: 1;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .rating-bar-fill {
+            height: 100%;
+            background: #0F62FE;
+            transition: width 0.3s;
+        }
+
+        .rating-bar-value {
+            font-size: 0.75rem;
+            color: #161616;
+            font-weight: 600;
+            min-width: 30px;
+        }
+
+        .comments-feed {
+            margin-top: 1rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .comment-item {
+            background: #ffffff;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 0.75rem;
+            border-left: 3px solid #0F62FE;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.75rem;
+            color: #525252;
+        }
+
+        .comment-text {
+            font-size: 0.875rem;
+            color: #161616;
+            line-height: 1.5;
+        }
+
+        /* Certificate Styles */
+        .certificate-container {
+            background: #ffffff;
+            border: 2px solid #0F62FE;
+            border-radius: 8px;
+            padding: 3rem;
+            margin: 2rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .certificate-header {
+            margin-bottom: 2rem;
+        }
+
+        .certificate-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0F62FE;
+            margin-bottom: 1rem;
+        }
+
+        .certificate-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #161616;
+            margin-bottom: 0.5rem;
+        }
+
+        .certificate-subtitle {
+            font-size: 1rem;
+            color: #525252;
+        }
+
+        .certificate-body {
+            margin: 2rem 0;
+        }
+
+        .certificate-recipient {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #0F62FE;
+            margin: 1rem 0;
+        }
+
+        .certificate-course {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #161616;
+            margin: 1rem 0;
+        }
+
+        .certificate-details {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            font-size: 0.875rem;
+            color: #525252;
+        }
+
+        .certificate-footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .certificate-id {
+            font-size: 0.75rem;
+            color: #525252;
+            margin-top: 1rem;
+        }
+
+        .certificate-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .download-cert-btn {
+            background: #0F62FE;
+            color: #ffffff;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .download-cert-btn:hover {
+            background: #0353E9;
+        }
+
+        .my-learning-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .learning-card {
+            background: #ffffff;
+            border-radius: 4px;
+            padding: 1.5rem;
+            border-left: 4px solid #0F62FE;
+        }
+
+        .learning-card h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .learning-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .status-completed {
+            background: #DEFBE6;
+            color: #0E6027;
+        }
+
+        .status-in-progress {
+            background: #D0E2FF;
+            color: #0043CE;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
@@ -676,22 +1266,211 @@
                     <tbody id="rosterTableBody"></tbody>
                 </table>
             </div>
+
+            <!-- Upload Training Content Panel -->
+            <div class="upload-content-panel" id="uploadContentPanel" style="display: none;">
+                <h3>📤 Upload Training Content</h3>
+                
+                <div class="upload-section">
+                    <h4>Recording URL</h4>
+                    <div class="form-group">
+                        <label class="form-label">Video URL (YouTube, MS Teams, or Vimeo)</label>
+                        <input type="url" class="form-input" id="recordingUrl" placeholder="https://...">
+                        <small style="color: #525252; font-size: 0.75rem;">Paste the full URL of your recording</small>
+                    </div>
+                </div>
+
+                <div class="upload-section">
+                    <h4>Slide Deck</h4>
+                    <div class="file-upload-area" id="slideUploadArea" onclick="document.getElementById('slideFileInput').click()">
+                        <div class="upload-icon">📄</div>
+                        <div id="slideUploadText">Click to upload slide deck (PDF, PPTX)</div>
+                    </div>
+                    <input type="file" id="slideFileInput" accept=".pdf,.pptx,.ppt" style="display: none;" onchange="handleSlideUpload(event)">
+                </div>
+
+                <div class="upload-section">
+                    <h4>Additional Materials (Up to 3)</h4>
+                    <div id="materialsContainer">
+                        <div class="material-link-input">
+                            <input type="text" class="form-input" placeholder="Material Label (e.g., Reference Guide)" id="materialLabel1">
+                            <input type="url" class="form-input" placeholder="https://..." id="materialUrl1">
+                        </div>
+                    </div>
+                    <button class="add-material-btn" onclick="addMaterialField()" id="addMaterialBtn">+ Add Another Material</button>
+                </div>
+
+                <button class="publish-btn" onclick="publishContent()" id="publishBtn">🚀 Publish Content as On-Demand</button>
+            </div>
         </div>
 
-        <!-- Other Views Placeholders -->
+        <!-- My Learning View -->
         <div class="view-section" id="myLearningView">
-            <h2>My Learning</h2>
-            <p style="color: #525252; margin-top: 1rem;">Coming soon...</p>
+            <h2 style="margin-bottom: 1.5rem; font-size: 1.5rem;">📚 My Learning</h2>
+            
+            <div class="my-learning-grid" id="myLearningGrid">
+                <p style="color: #525252; padding: 2rem;">No completed courses yet. Enroll in courses to get started!</p>
+            </div>
         </div>
         <div class="view-section" id="recordingsView">
-            <h2>Recordings</h2>
-            <p style="color: #525252; margin-top: 1rem;">Coming soon...</p>
+            <div class="recordings-header">
+                <h2 style="margin-bottom: 1rem; font-size: 1.5rem;">📹 Training Recordings</h2>
+                <p style="color: #525252;">Access on-demand training content, recordings, and materials</p>
+            </div>
+
+            <div class="recordings-filters">
+                <input type="text" class="search-box" id="recordingsSearchBox" placeholder="Search recordings by title or trainer...">
+                <div class="category-filters" style="margin-top: 1rem;">
+                    <button class="category-btn active" data-category="all" onclick="filterRecordings('all')">All</button>
+                    <button class="category-btn" data-category="agentic-ai" onclick="filterRecordings('agentic-ai')">Agentic AI</button>
+                    <button class="category-btn" data-category="cloud" onclick="filterRecordings('cloud')">Cloud & Infrastructure</button>
+                    <button class="category-btn" data-category="ams" onclick="filterRecordings('ams')">AMS Delivery</button>
+                    <button class="category-btn" data-category="governance" onclick="filterRecordings('governance')">AI Governance</button>
+                    <button class="category-btn" data-category="data" onclick="filterRecordings('data')">Data & Analytics</button>
+                    <button class="category-btn" data-category="leadership" onclick="filterRecordings('leadership')">Leadership</button>
+                </div>
+            </div>
+
+            <div class="recordings-grid" id="recordingsGrid">
+                <p style="color: #525252; padding: 2rem;">No recordings available yet. Check back soon!</p>
+            </div>
         </div>
         <div class="view-section" id="analyticsView">
             <h2>Analytics</h2>
             <p style="color: #525252; margin-top: 1rem;">Coming soon...</p>
         </div>
     </main>
+
+    <!-- Feedback Form Modal -->
+    <div class="modal-overlay" id="feedbackModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">📝 Course Feedback</h2>
+            </div>
+            <div class="modal-body">
+                <div class="feedback-form-section">
+                    <h4 style="margin-bottom: 1rem;">Overall Rating</h4>
+                    <div class="star-rating" id="overallRating">
+                        <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" data-rating="4">★</span>
+                        <span class="star" data-rating="5">★</span>
+                    </div>
+                </div>
+
+                <div class="rating-question">
+                    <h4>Content Quality</h4>
+                    <div class="small-star-rating" id="contentQuality">
+                        <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" data-rating="4">★</span>
+                        <span class="star" data-rating="5">★</span>
+                    </div>
+                </div>
+
+                <div class="rating-question">
+                    <h4>Delivery & Presentation</h4>
+                    <div class="small-star-rating" id="deliveryRating">
+                        <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" data-rating="4">★</span>
+                        <span class="star" data-rating="5">★</span>
+                    </div>
+                </div>
+
+                <div class="rating-question">
+                    <h4>Practical Applicability</h4>
+                    <div class="small-star-rating" id="applicabilityRating">
+                        <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" data-rating="4">★</span>
+                        <span class="star" data-rating="5">★</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">What did you find most valuable?</label>
+                    <textarea class="feedback-textarea" id="valuableComment" placeholder="Share what you found most helpful..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">What could be improved?</label>
+                    <textarea class="feedback-textarea" id="improvementComment" placeholder="Share your suggestions for improvement..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Would you recommend this training?</label>
+                    <div class="recommend-options">
+                        <button class="recommend-btn" data-recommend="yes">👍 Yes</button>
+                        <button class="recommend-btn" data-recommend="maybe">🤔 Maybe</button>
+                        <button class="recommend-btn" data-recommend="no">👎 No</button>
+                    </div>
+                </div>
+
+                <div class="anonymous-toggle">
+                    <div class="toggle-switch" id="anonymousToggle">
+                        <div class="toggle-slider"></div>
+                    </div>
+                    <label>Submit anonymously</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeFeedbackModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="submitFeedback()">Submit Feedback</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Thank You Modal -->
+    <div class="modal-overlay" id="feedbackThankYouModal">
+        <div class="modal">
+            <div class="modal-body">
+                <div class="confirmation-content">
+                    <div class="confirmation-icon">🎉</div>
+                    <h2 class="confirmation-title">Thank You for Your Feedback!</h2>
+                    <p style="color: #525252; margin: 1rem 0;">Your feedback helps us improve our training programs and deliver better learning experiences.</p>
+                    <button class="btn btn-primary" onclick="closeFeedbackThankYou()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Certificate Modal -->
+    <div class="modal-overlay" id="certificateModal">
+        <div class="modal" style="max-width: 800px;">
+            <div class="modal-body">
+                <div class="certificate-container" id="certificateContent">
+                    <div class="certificate-header">
+                        <div class="certificate-logo">IBM Consulting</div>
+                        <div class="certificate-title">Certificate of Completion</div>
+                        <div class="certificate-subtitle">This certifies that</div>
+                    </div>
+                    <div class="certificate-body">
+                        <div class="certificate-recipient" id="certRecipient">Learner Name</div>
+                        <div class="certificate-subtitle">has successfully completed</div>
+                        <div class="certificate-course" id="certCourse">Course Title</div>
+                        <div class="certificate-details">
+                            <div><strong>Date:</strong> <span id="certDate">Date</span></div>
+                            <div><strong>Duration:</strong> <span id="certDuration">Duration</span></div>
+                            <div><strong>Trainer:</strong> <span id="certTrainer">Trainer</span></div>
+                        </div>
+                    </div>
+                    <div class="certificate-footer">
+                        <div style="font-weight: 600;">IBM Consulting Learning & Development</div>
+                        <div class="certificate-id" id="certId">Certificate ID: CERT-000000</div>
+                    </div>
+                </div>
+                <div class="certificate-actions">
+                    <button class="download-cert-btn" onclick="downloadCertificate()">📥 Download Certificate</button>
+                    <button class="btn btn-secondary" onclick="closeCertificateModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Enrollment Modal -->
     <div class="modal-overlay" id="enrollModal">
@@ -887,6 +1666,58 @@
         let currentCourseId = null;
         let currentCategory = 'all';
         let searchTerm = '';
+        let materialFieldCount = 1;
+        let uploadedSlideFile = null;
+        let recordingsCategory = 'all';
+        let recordingsSearchTerm = '';
+        
+        // Store recordings data
+        const recordings = [];
+        
+        // Store watched recordings
+        const watchedRecordings = new Set();
+        
+        // Feedback system
+        let feedbackRatings = {
+            overall: 0,
+            content: 0,
+            delivery: 0,
+            applicability: 0,
+            recommend: '',
+            anonymous: false
+        };
+        
+        // Store feedback data
+        const courseFeedback = {
+            1: [
+                { overall: 5, content: 5, delivery: 5, applicability: 4, recommend: 'yes', valuable: 'The hands-on labs were exceptional. Real-world scenarios helped solidify concepts.', improvement: 'Would love more time for Q&A sessions.', anonymous: false, name: 'Jennifer Lee', date: '2026-05-10' },
+                { overall: 5, content: 5, delivery: 4, applicability: 5, recommend: 'yes', valuable: 'Excellent coverage of agentic AI patterns and best practices.', improvement: 'More case studies from different industries would be helpful.', anonymous: false, name: 'Marcus Tan', date: '2026-05-09' },
+                { overall: 4, content: 4, delivery: 5, applicability: 4, recommend: 'yes', valuable: 'Dr. Chen\'s expertise and teaching style made complex topics accessible.', improvement: 'Could use more advanced troubleshooting examples.', anonymous: true, name: 'Anonymous', date: '2026-05-08' },
+                { overall: 5, content: 5, delivery: 5, applicability: 5, recommend: 'yes', valuable: 'The integration with watsonx was seamlessly demonstrated.', improvement: 'None - it was perfect!', anonymous: false, name: 'Aisha Rahman', date: '2026-05-07' },
+                { overall: 4, content: 4, delivery: 4, applicability: 5, recommend: 'yes', valuable: 'Practical examples that I can immediately apply to my projects.', improvement: 'More time for hands-on practice would be beneficial.', anonymous: true, name: 'Anonymous', date: '2026-05-06' },
+                { overall: 5, content: 5, delivery: 5, applicability: 4, recommend: 'yes', valuable: 'Comprehensive coverage from basics to advanced topics.', improvement: 'Perhaps split into two courses - beginner and advanced.', anonymous: false, name: 'David Chen', date: '2026-05-05' },
+                { overall: 4, content: 5, delivery: 4, applicability: 4, recommend: 'yes', valuable: 'Great balance between theory and practice.', improvement: 'More real-world deployment scenarios.', anonymous: false, name: 'Sarah Kim', date: '2026-05-04' },
+                { overall: 5, content: 5, delivery: 5, applicability: 5, recommend: 'yes', valuable: 'Best AI training I\'ve attended. Highly practical and relevant.', improvement: 'Nothing significant - excellent course overall.', anonymous: false, name: 'Raj Patel', date: '2026-05-03' }
+            ],
+            2: [
+                { overall: 5, content: 5, delivery: 5, applicability: 5, recommend: 'yes', valuable: 'Michael\'s deep knowledge of IBM Cloud architecture is impressive.', improvement: 'Would appreciate more hands-on labs.', anonymous: false, name: 'David Wong', date: '2026-05-02' },
+                { overall: 4, content: 5, delivery: 4, applicability: 4, recommend: 'yes', valuable: 'Solid foundation in cloud architecture principles.', improvement: 'More focus on cost optimization strategies.', anonymous: false, name: 'Sarah Lim', date: '2026-05-01' },
+                { overall: 5, content: 5, delivery: 5, applicability: 5, recommend: 'yes', valuable: 'Excellent coverage of security best practices.', improvement: 'Could include more multi-cloud scenarios.', anonymous: true, name: 'Anonymous', date: '2026-04-30' },
+                { overall: 4, content: 4, delivery: 5, applicability: 4, recommend: 'yes', valuable: 'Great networking session with other cloud professionals.', improvement: 'More time for architecture design exercises.', anonymous: false, name: 'James Wilson', date: '2026-04-29' },
+                { overall: 5, content: 5, delivery: 4, applicability: 5, recommend: 'yes', valuable: 'The migration strategies section was particularly valuable.', improvement: 'More case studies from large enterprises.', anonymous: false, name: 'Lisa Chen', date: '2026-04-28' },
+                { overall: 4, content: 4, delivery: 4, applicability: 4, recommend: 'maybe', valuable: 'Good overview of IBM Cloud services.', improvement: 'More depth on Kubernetes and containerization.', anonymous: true, name: 'Anonymous', date: '2026-04-27' },
+                { overall: 5, content: 5, delivery: 5, applicability: 5, recommend: 'yes', valuable: 'Practical insights that I can apply immediately.', improvement: 'Perhaps extend to 3 days to cover more topics.', anonymous: false, name: 'Tom Anderson', date: '2026-04-26' },
+                { overall: 5, content: 5, delivery: 5, applicability: 4, recommend: 'yes', valuable: 'Excellent trainer with real-world experience.', improvement: 'More interactive Q&A time.', anonymous: false, name: 'Maria Garcia', date: '2026-04-25' },
+                { overall: 4, content: 5, delivery: 4, applicability: 5, recommend: 'yes', valuable: 'Comprehensive and well-structured content.', improvement: 'Include more troubleshooting scenarios.', anonymous: true, name: 'Anonymous', date: '2026-04-24' },
+                { overall: 5, content: 5, delivery: 5, applicability: 5, recommend: 'yes', valuable: 'Best cloud architecture training available.', improvement: 'None - exceeded expectations!', anonymous: false, name: 'Alex Kumar', date: '2026-04-23' }
+            ]
+        };
+        
+        // Store certificates
+        const certificates = {};
+        
+        // Store user's completed courses
+        const userCompletedCourses = [];
 
         function renderCourses(filteredCourses) {
             const grid = document.getElementById('courseGrid');
@@ -894,17 +1725,84 @@
 
             filteredCourses.forEach(course => {
                 const progressPercent = Math.round((course.enrolled / course.capacity) * 100);
-                const statusLabel = course.status === 'open' ? 'Open' : 
-                                  course.status === 'full' ? 'Full' : 'Upcoming';
+                let statusLabel = course.status === 'open' ? 'Open' :
+                                  course.status === 'full' ? 'Full' :
+                                  course.status === 'on-demand' ? 'On-Demand' : 'Upcoming';
                 
                 const card = document.createElement('div');
                 card.className = 'course-card';
                 
                 let buttonHtml = '';
-                if (course.status === 'full') {
+                if (course.status === 'on-demand') {
+                    buttonHtml = `<button class="enrol-btn" onclick="viewRecording(${course.id})">View Recording</button>`;
+                } else if (course.status === 'full') {
                     buttonHtml = `<button class="waitlist-btn" onclick="openEnrollModal(${course.id}, true)">Join Waitlist</button>`;
                 } else {
                     buttonHtml = `<button class="enrol-btn" onclick="openEnrollModal(${course.id}, false)">Enrol Now</button>`;
+                }
+                
+                // Add recording/materials links if available
+                let recordingLinksHtml = '';
+                if (course.recordingUrl || course.materials) {
+                    recordingLinksHtml = '<div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;">';
+                    if (course.recordingUrl) {
+                        recordingLinksHtml += `<a href="${course.recordingUrl}" target="_blank" style="color: #0F62FE; text-decoration: none; font-size: 0.875rem; display: block; margin-bottom: 0.5rem;">🎥 View Recording</a>`;
+                    }
+                    if (course.slideFile) {
+                        recordingLinksHtml += `<div style="color: #0F62FE; font-size: 0.875rem; margin-bottom: 0.5rem;">📄 ${course.slideFile}</div>`;
+                    }
+                    recordingLinksHtml += '</div>';
+                }
+                
+                // Add feedback summary if available
+                let feedbackHtml = '';
+                if (courseFeedback[course.id] && courseFeedback[course.id].length > 0) {
+                    const feedback = courseFeedback[course.id];
+                    const avgOverall = (feedback.reduce((sum, f) => sum + f.overall, 0) / feedback.length).toFixed(1);
+                    const avgContent = (feedback.reduce((sum, f) => sum + f.content, 0) / feedback.length).toFixed(1);
+                    const avgDelivery = (feedback.reduce((sum, f) => sum + f.delivery, 0) / feedback.length).toFixed(1);
+                    const avgApplicability = (feedback.reduce((sum, f) => sum + f.applicability, 0) / feedback.length).toFixed(1);
+                    
+                    const stars = '★'.repeat(Math.round(avgOverall)) + '☆'.repeat(5 - Math.round(avgOverall));
+                    
+                    feedbackHtml = `
+                        <div class="feedback-summary">
+                            <div class="rating-display">
+                                <span class="rating-stars">${stars}</span>
+                                <span style="font-weight: 600; color: #161616;">${avgOverall}</span>
+                                <span class="rating-count">(${feedback.length} reviews)</span>
+                            </div>
+                            <div class="rating-breakdown">
+                                <div class="rating-bar-item">
+                                    <div class="rating-bar-label">Content Quality</div>
+                                    <div class="rating-bar-container">
+                                        <div class="rating-bar">
+                                            <div class="rating-bar-fill" style="width: ${(avgContent/5)*100}%"></div>
+                                        </div>
+                                        <span class="rating-bar-value">${avgContent}</span>
+                                    </div>
+                                </div>
+                                <div class="rating-bar-item">
+                                    <div class="rating-bar-label">Delivery</div>
+                                    <div class="rating-bar-container">
+                                        <div class="rating-bar">
+                                            <div class="rating-bar-fill" style="width: ${(avgDelivery/5)*100}%"></div>
+                                        </div>
+                                        <span class="rating-bar-value">${avgDelivery}</span>
+                                    </div>
+                                </div>
+                                <div class="rating-bar-item">
+                                    <div class="rating-bar-label">Applicability</div>
+                                    <div class="rating-bar-container">
+                                        <div class="rating-bar">
+                                            <div class="rating-bar-fill" style="width: ${(avgApplicability/5)*100}%"></div>
+                                        </div>
+                                        <span class="rating-bar-value">${avgApplicability}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
                 }
                 
                 card.innerHTML = `
@@ -920,8 +1818,9 @@
                         </div>
                         <div class="course-badges">
                             <span class="badge badge-format">${course.format}</span>
-                            <span class="badge badge-status-${course.status}">${statusLabel}</span>
+                            <span class="badge badge-status-${course.status} ${course.status === 'on-demand' ? 'badge-on-demand' : ''}">${statusLabel}</span>
                         </div>
+                        ${feedbackHtml}
                         <div class="enrolment-progress">
                             <div class="progress-label">
                                 <span>Enrolment</span>
@@ -931,6 +1830,7 @@
                                 <div class="progress-fill" style="width: ${progressPercent}%"></div>
                             </div>
                         </div>
+                        ${recordingLinksHtml}
                         ${buttonHtml}
                     </div>
                 `;
@@ -1092,8 +1992,10 @@
             select.onchange = function() {
                 if (this.value) {
                     loadRoster(parseInt(this.value));
+                    showUploadPanel(parseInt(this.value));
                 } else {
                     document.getElementById('rosterContainer').style.display = 'none';
+                    document.getElementById('uploadContentPanel').style.display = 'none';
                 }
             };
         }
@@ -1114,7 +2016,7 @@
                     <td>${attendee.mode}</td>
                     <td>${attendee.date}</td>
                     <td>
-                        <select class="status-select" onchange="updateAttendeeStatus(${courseId}, ${index}, this.value)">
+                        <select class="status-select" onchange="updateAttendeeStatus(${courseId}, ${index}, this.value, '${attendee.name}')">
                             <option value="enrolled" ${attendee.status === 'enrolled' ? 'selected' : ''}>Enrolled</option>
                             <option value="attended" ${attendee.status === 'attended' ? 'selected' : ''}>Attended</option>
                             <option value="completed" ${attendee.status === 'completed' ? 'selected' : ''}>Completed</option>
@@ -1127,6 +2029,574 @@
             
             container.style.display = courseAttendees.length > 0 ? 'block' : 'none';
         }
+        
+        function updateAttendeeStatus(courseId, attendeeIndex, newStatus, attendeeName) {
+            const oldStatus = attendees[courseId][attendeeIndex].status;
+            attendees[courseId][attendeeIndex].status = newStatus;
+            
+            // If status changed to completed, trigger feedback and certificate
+            if (newStatus === 'completed' && oldStatus !== 'completed') {
+                const course = courses.find(c => c.id === courseId);
+                
+                // Generate certificate
+                generateCertificate(courseId, attendeeName);
+                
+                // Show feedback prompt after a short delay
+                setTimeout(() => {
+                    if (confirm(`${attendeeName} has completed "${course.title}".\n\nWould you like to request feedback from this learner?`)) {
+                        openFeedbackModal(courseId, attendeeName);
+                    }
+                }, 500);
+            }
+        }
+        
+        // Upload Content Panel Functions
+        function showUploadPanel(courseId) {
+            const course = courses.find(c => c.id === courseId);
+            const panel = document.getElementById('uploadContentPanel');
+            
+            // Check if course has completed attendees
+            const courseAttendees = attendees[courseId] || [];
+            const hasCompleted = courseAttendees.some(a => a.status === 'completed' || a.status === 'attended');
+            
+            if (hasCompleted || course.status === 'full') {
+                panel.style.display = 'block';
+                currentCourseId = courseId;
+                
+                // Reset form
+                document.getElementById('recordingUrl').value = course.recordingUrl || '';
+                document.getElementById('slideFileInput').value = '';
+                uploadedSlideFile = course.slideFile || null;
+                
+                // Update slide upload area
+                const slideArea = document.getElementById('slideUploadArea');
+                const slideText = document.getElementById('slideUploadText');
+                if (uploadedSlideFile) {
+                    slideArea.classList.add('has-file');
+                    slideText.textContent = `✓ ${uploadedSlideFile}`;
+                } else {
+                    slideArea.classList.remove('has-file');
+                    slideText.textContent = 'Click to upload slide deck (PDF, PPTX)';
+                }
+                
+                // Reset materials
+                materialFieldCount = 1;
+                const container = document.getElementById('materialsContainer');
+                container.innerHTML = `
+                    <div class="material-link-input">
+                        <input type="text" class="form-input" placeholder="Material Label (e.g., Reference Guide)" id="materialLabel1">
+                        <input type="url" class="form-input" placeholder="https://..." id="materialUrl1">
+                    </div>
+                `;
+                
+                // Load existing materials if any
+                if (course.materials && course.materials.length > 0) {
+                    container.innerHTML = '';
+                    course.materials.forEach((mat, idx) => {
+                        const num = idx + 1;
+                        container.innerHTML += `
+                            <div class="material-link-input">
+                                <input type="text" class="form-input" placeholder="Material Label" id="materialLabel${num}" value="${mat.label}">
+                                <input type="url" class="form-input" placeholder="https://..." id="materialUrl${num}" value="${mat.url}">
+                            </div>
+                        `;
+                        materialFieldCount = num;
+                    });
+                }
+                
+                // Update button state
+                updatePublishButton();
+            } else {
+                panel.style.display = 'none';
+            }
+        }
+        
+        function handleSlideUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                uploadedSlideFile = file.name;
+                const slideArea = document.getElementById('slideUploadArea');
+                const slideText = document.getElementById('slideUploadText');
+                slideArea.classList.add('has-file');
+                slideText.textContent = `✓ ${file.name}`;
+                updatePublishButton();
+            }
+        }
+        
+        function addMaterialField() {
+            if (materialFieldCount >= 3) {
+                alert('Maximum 3 materials allowed');
+                return;
+            }
+            
+            materialFieldCount++;
+            const container = document.getElementById('materialsContainer');
+            const newField = document.createElement('div');
+            newField.className = 'material-link-input';
+            newField.innerHTML = `
+                <input type="text" class="form-input" placeholder="Material Label (e.g., Reference Guide)" id="materialLabel${materialFieldCount}">
+                <input type="url" class="form-input" placeholder="https://..." id="materialUrl${materialFieldCount}">
+            `;
+            container.appendChild(newField);
+            
+            if (materialFieldCount >= 3) {
+                document.getElementById('addMaterialBtn').style.display = 'none';
+            }
+        }
+        
+        function updatePublishButton() {
+            const recordingUrl = document.getElementById('recordingUrl').value;
+            const publishBtn = document.getElementById('publishBtn');
+            
+            if (recordingUrl && uploadedSlideFile) {
+                publishBtn.disabled = false;
+            } else {
+                publishBtn.disabled = true;
+            }
+        }
+        
+        function publishContent() {
+            const course = courses.find(c => c.id === currentCourseId);
+            if (!course) return;
+            
+            const recordingUrl = document.getElementById('recordingUrl').value;
+            
+            if (!recordingUrl || !uploadedSlideFile) {
+                alert('Please provide both recording URL and slide deck');
+                return;
+            }
+            
+            // Collect materials
+            const materials = [];
+            for (let i = 1; i <= materialFieldCount; i++) {
+                const label = document.getElementById(`materialLabel${i}`).value;
+                const url = document.getElementById(`materialUrl${i}`).value;
+                if (label && url) {
+                    materials.push({ label, url });
+                }
+            }
+            
+            // Update course
+            course.recordingUrl = recordingUrl;
+            course.slideFile = uploadedSlideFile;
+            course.materials = materials;
+            course.status = 'on-demand';
+            course.format = 'On-Demand';
+            course.publishedDate = new Date().toISOString();
+            
+            // Add to recordings
+            recordings.push({
+                id: course.id,
+                title: course.title,
+                trainer: course.trainer,
+                category: course.category,
+                categoryLabel: course.categoryLabel,
+                date: course.date,
+                duration: course.duration,
+                recordingUrl: recordingUrl,
+                slideFile: uploadedSlideFile,
+                materials: materials,
+                publishedDate: course.publishedDate
+            });
+            
+            // Show success message
+            alert(`✅ Content published successfully!\n\n"${course.title}" is now available as On-Demand in the Recordings section.`);
+            
+            // Refresh course display
+            filterCourses();
+            renderRecordings();
+            
+            // Reset form
+            document.getElementById('uploadContentPanel').style.display = 'none';
+        }
+        
+        // Recordings Section Functions
+        function renderRecordings() {
+            const grid = document.getElementById('recordingsGrid');
+            
+            if (recordings.length === 0) {
+                grid.innerHTML = '<p style="color: #525252; padding: 2rem;">No recordings available yet. Check back soon!</p>';
+                return;
+            }
+            
+            let filtered = recordings;
+            
+            // Apply category filter
+            if (recordingsCategory !== 'all') {
+                filtered = filtered.filter(r => r.category === recordingsCategory);
+            }
+            
+            // Apply search filter
+            if (recordingsSearchTerm) {
+                filtered = filtered.filter(r => 
+                    r.title.toLowerCase().includes(recordingsSearchTerm.toLowerCase()) ||
+                    r.trainer.toLowerCase().includes(recordingsSearchTerm.toLowerCase())
+                );
+            }
+            
+            if (filtered.length === 0) {
+                grid.innerHTML = '<p style="color: #525252; padding: 2rem;">No recordings match your search criteria.</p>';
+                return;
+            }
+            
+            grid.innerHTML = '';
+            
+            filtered.forEach(recording => {
+                const card = document.createElement('div');
+                card.className = 'recording-card';
+                
+                // Check if recording is new (published in last 7 days)
+                const publishedDate = new Date(recording.publishedDate);
+        
+        // Feedback System Functions
+        function openFeedbackModal(courseId, attendeeName) {
+            currentCourseId = courseId;
+            const modal = document.getElementById('feedbackModal');
+            modal.classList.add('active');
+            
+            // Reset ratings
+            feedbackRatings = {
+                overall: 0,
+                content: 0,
+                delivery: 0,
+                applicability: 0,
+                recommend: '',
+                anonymous: false
+            };
+            
+            // Reset form
+            document.querySelectorAll('.star').forEach(star => star.classList.remove('active'));
+            document.querySelectorAll('.recommend-btn').forEach(btn => btn.classList.remove('selected'));
+            document.getElementById('valuableComment').value = '';
+            document.getElementById('improvementComment').value = '';
+            document.getElementById('anonymousToggle').classList.remove('active');
+            
+            // Setup star rating interactions
+            setupStarRatings();
+            setupRecommendButtons();
+            setupAnonymousToggle();
+        }
+        
+        function setupStarRatings() {
+            const ratingContainers = {
+                'overallRating': 'overall',
+                'contentQuality': 'content',
+                'deliveryRating': 'delivery',
+                'applicabilityRating': 'applicability'
+            };
+            
+            Object.keys(ratingContainers).forEach(containerId => {
+                const container = document.getElementById(containerId);
+                const stars = container.querySelectorAll('.star');
+                const ratingKey = ratingContainers[containerId];
+                
+                stars.forEach(star => {
+                    star.addEventListener('mouseenter', function() {
+                        const rating = parseInt(this.dataset.rating);
+                        stars.forEach((s, idx) => {
+                            if (idx < rating) {
+                                s.classList.add('active');
+                            } else {
+                                s.classList.remove('active');
+                            }
+                        });
+                    });
+                    
+                    star.addEventListener('click', function() {
+                        const rating = parseInt(this.dataset.rating);
+                        feedbackRatings[ratingKey] = rating;
+                    });
+                });
+                
+                container.addEventListener('mouseleave', function() {
+                    const currentRating = feedbackRatings[ratingKey];
+                    stars.forEach((s, idx) => {
+                        if (idx < currentRating) {
+                            s.classList.add('active');
+                        } else {
+                            s.classList.remove('active');
+                        }
+                    });
+                });
+            });
+        }
+        
+        function setupRecommendButtons() {
+            document.querySelectorAll('.recommend-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.recommend-btn').forEach(b => b.classList.remove('selected'));
+                    this.classList.add('selected');
+                    feedbackRatings.recommend = this.dataset.recommend;
+                });
+            });
+        }
+        
+        function setupAnonymousToggle() {
+            const toggle = document.getElementById('anonymousToggle');
+            toggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                feedbackRatings.anonymous = this.classList.contains('active');
+            });
+        }
+        
+        function closeFeedbackModal() {
+            document.getElementById('feedbackModal').classList.remove('active');
+        }
+        
+        function submitFeedback() {
+            // Validate ratings
+            if (feedbackRatings.overall === 0 || feedbackRatings.content === 0 || 
+                feedbackRatings.delivery === 0 || feedbackRatings.applicability === 0) {
+                alert('Please provide all ratings before submitting.');
+                return;
+            }
+            
+            if (!feedbackRatings.recommend) {
+                alert('Please indicate if you would recommend this training.');
+                return;
+            }
+            
+            const valuable = document.getElementById('valuableComment').value;
+            const improvement = document.getElementById('improvementComment').value;
+            
+            if (!valuable || !improvement) {
+                alert('Please provide comments for both questions.');
+                return;
+            }
+            
+            // Create feedback object
+            const feedback = {
+                overall: feedbackRatings.overall,
+                content: feedbackRatings.content,
+                delivery: feedbackRatings.delivery,
+                applicability: feedbackRatings.applicability,
+                recommend: feedbackRatings.recommend,
+                valuable: valuable,
+                improvement: improvement,
+                anonymous: feedbackRatings.anonymous,
+                name: feedbackRatings.anonymous ? 'Anonymous' : 'Current User',
+                date: new Date().toISOString().split('T')[0]
+            };
+            
+            // Add to feedback data
+            if (!courseFeedback[currentCourseId]) {
+                courseFeedback[currentCourseId] = [];
+            }
+            courseFeedback[currentCourseId].push(feedback);
+            
+            // Close feedback modal and show thank you
+            closeFeedbackModal();
+            document.getElementById('feedbackThankYouModal').classList.add('active');
+            
+            // Refresh course display to show updated ratings
+            filterCourses();
+        }
+        
+        function closeFeedbackThankYou() {
+            document.getElementById('feedbackThankYouModal').classList.remove('active');
+        }
+        
+        // Certificate System Functions
+        function generateCertificate(courseId, learnerName) {
+            const course = courses.find(c => c.id === courseId);
+            const certId = `CERT-${courseId}-${Date.now().toString().slice(-6)}`;
+            
+            const certificate = {
+                id: certId,
+                courseId: courseId,
+                courseTitle: course.title,
+                learnerName: learnerName,
+                trainer: course.trainer,
+                duration: course.duration,
+                dateCompleted: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+                dateIssued: new Date().toISOString()
+            };
+            
+            certificates[certId] = certificate;
+            
+            // Add to user's completed courses
+            if (!userCompletedCourses.find(c => c.courseId === courseId && c.learnerName === learnerName)) {
+                userCompletedCourses.push({
+                    courseId: courseId,
+                    learnerName: learnerName,
+                    certId: certId,
+                    dateCompleted: certificate.dateCompleted
+                });
+            }
+            
+            // Update My Learning view
+            renderMyLearning();
+        }
+        
+        function viewCertificate(certId) {
+            const cert = certificates[certId];
+            if (!cert) return;
+            
+            document.getElementById('certRecipient').textContent = cert.learnerName;
+            document.getElementById('certCourse').textContent = cert.courseTitle;
+            document.getElementById('certDate').textContent = cert.dateCompleted;
+            document.getElementById('certDuration').textContent = cert.duration;
+            document.getElementById('certTrainer').textContent = cert.trainer;
+            document.getElementById('certId').textContent = `Certificate ID: ${cert.id}`;
+            
+            document.getElementById('certificateModal').classList.add('active');
+        }
+        
+        function closeCertificateModal() {
+            document.getElementById('certificateModal').classList.remove('active');
+        }
+        
+        function downloadCertificate() {
+            alert('Certificate download functionality would be implemented here.\n\nIn a production environment, this would generate a PDF certificate with proper formatting and branding.');
+        }
+        
+        function renderMyLearning() {
+            const grid = document.getElementById('myLearningGrid');
+            
+            if (userCompletedCourses.length === 0) {
+                grid.innerHTML = '<p style="color: #525252; padding: 2rem;">No completed courses yet. Enroll in courses to get started!</p>';
+                return;
+            }
+            
+            grid.innerHTML = '';
+            
+            userCompletedCourses.forEach(completion => {
+                const course = courses.find(c => c.id === completion.courseId);
+                const cert = certificates[completion.certId];
+                
+                const card = document.createElement('div');
+                card.className = 'learning-card';
+                
+                card.innerHTML = `
+                    <h3>${course.title}</h3>
+                    <div class="learning-status status-completed">✓ Completed</div>
+                    <div style="font-size: 0.875rem; color: #525252; margin-bottom: 1rem;">
+                        <div><strong>Trainer:</strong> ${course.trainer}</div>
+                        <div><strong>Completed:</strong> ${completion.dateCompleted}</div>
+                        <div><strong>Duration:</strong> ${course.duration}</div>
+                    </div>
+                    <button class="btn btn-primary" onclick="viewCertificate('${completion.certId}')" style="width: 100%; margin-bottom: 0.5rem;">
+                        🏆 View Certificate
+                    </button>
+                    <button class="btn btn-secondary" onclick="downloadCertificate()" style="width: 100%;">
+                        📥 Download Certificate
+                    </button>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+        
+        // Update navigation to load My Learning
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                if (this.dataset.view === 'my-learning') {
+                    renderMyLearning();
+                }
+            });
+        });
+                const daysSincePublished = Math.floor((new Date() - publishedDate) / (1000 * 60 * 60 * 24));
+                const isNew = daysSincePublished <= 7;
+                
+                // Check if watched
+                const isWatched = watchedRecordings.has(recording.id);
+                
+                // Build materials HTML
+                let materialsHtml = '';
+                if (recording.materials && recording.materials.length > 0) {
+                    materialsHtml = `
+                        <div class="materials-section">
+                            <div class="materials-title">📚 Additional Materials</div>
+                            <div class="material-links">
+                                ${recording.materials.map(mat => `
+                                    <a href="${mat.url}" target="_blank" class="material-link">
+                                        📄 ${mat.label}
+                                    </a>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                card.innerHTML = `
+                    ${isNew ? '<div class="new-badge">NEW</div>' : ''}
+                    <div class="video-placeholder category-${recording.category}">
+                        <div>▶️</div>
+                    </div>
+                    <div class="recording-content">
+                        <h3 class="recording-title">${recording.title}</h3>
+                        <div class="course-trainer">👤 ${recording.trainer}</div>
+                        <div class="recording-meta">
+                            <span>📅 ${recording.date}</span>
+                            <span>⏱️ ${recording.duration}</span>
+                            <span class="badge badge-format">${recording.categoryLabel}</span>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <a href="${recording.recordingUrl}" target="_blank" class="material-link" style="font-weight: 600;">
+                                🎥 Watch Recording
+                            </a>
+                        </div>
+                        ${recording.slideFile ? `
+                            <div style="margin-top: 0.5rem;">
+                                <div class="material-link" style="cursor: default;">
+                                    📄 ${recording.slideFile}
+                                </div>
+                            </div>
+                        ` : ''}
+                        ${materialsHtml}
+                        <button class="watched-btn ${isWatched ? 'watched' : ''}" onclick="toggleWatched(${recording.id})">
+                            ${isWatched ? '✓ Watched' : 'Mark as Watched'}
+                        </button>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+        
+        function filterRecordings(category) {
+            recordingsCategory = category;
+            
+            // Update active button
+            document.querySelectorAll('#recordingsView .category-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.category === category) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            renderRecordings();
+        }
+        
+        function toggleWatched(recordingId) {
+            if (watchedRecordings.has(recordingId)) {
+                watchedRecordings.delete(recordingId);
+            } else {
+                watchedRecordings.add(recordingId);
+            }
+            renderRecordings();
+        }
+        
+        function viewRecording(courseId) {
+            // Switch to recordings view
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+            document.querySelector('[data-view="recordings"]').classList.add('active');
+            
+            document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active'));
+            document.getElementById('recordingsView').classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Recordings search
+        document.getElementById('recordingsSearchBox').addEventListener('input', function(e) {
+            recordingsSearchTerm = e.target.value;
+            renderRecordings();
+        });
+        
+        // Update recording URL input listener
+        document.getElementById('recordingUrl').addEventListener('input', updatePublishButton);
 
         function updateAttendeeStatus(courseId, attendeeIndex, newStatus) {
             attendees[courseId][attendeeIndex].status = newStatus;
