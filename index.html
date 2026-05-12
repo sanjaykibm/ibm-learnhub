@@ -1151,6 +1151,218 @@
             color: #0043CE;
         }
 
+        /* IBM Consulting Advantage Integration Styles */
+        .skills-section {
+            background: #f4f4f4;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+
+        .skills-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #161616;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: #ffffff;
+            border: 1px solid #0F62FE;
+            color: #0F62FE;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .skill-level {
+            background: #0F62FE;
+            color: #ffffff;
+            padding: 0.125rem 0.5rem;
+            border-radius: 8px;
+            font-size: 0.625rem;
+            font-weight: 600;
+        }
+
+        .skill-level-foundation {
+            background: #24A148;
+        }
+
+        .skill-level-intermediate {
+            background: #0F62FE;
+        }
+
+        .skill-level-advanced {
+            background: #8A3FFC;
+        }
+
+        .skill-level-expert {
+            background: #FA4D56;
+        }
+
+        /* Digital Badges */
+        .badges-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .badge-showcase {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 0.75rem;
+        }
+
+        .digital-badge {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0F62FE 0%, #8A3FFC 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 2rem;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.2s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .digital-badge:hover {
+            transform: scale(1.1);
+        }
+
+        .badge-acclaim {
+            background: linear-gradient(135deg, #0F62FE 0%, #24A148 100%);
+        }
+
+        .badge-completion {
+            background: linear-gradient(135deg, #24A148 0%, #F1C21B 100%);
+        }
+
+        .badge-excellence {
+            background: linear-gradient(135deg, #8A3FFC 0%, #FA4D56 100%);
+        }
+
+        .badge-label {
+            font-size: 0.625rem;
+            text-align: center;
+            margin-top: 0.5rem;
+            color: #525252;
+            font-weight: 500;
+        }
+
+        .badge-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Career Levels */
+        .career-section {
+            background: linear-gradient(135deg, #0F62FE 0%, #8A3FFC 100%);
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            color: #ffffff;
+        }
+
+        .career-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .career-path {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .career-level {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .career-level.current {
+            background: #ffffff;
+            color: #0F62FE;
+            font-weight: 600;
+            border: 2px solid #ffffff;
+        }
+
+        .career-arrow {
+            font-size: 1.25rem;
+            opacity: 0.7;
+        }
+
+        .career-requirements {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            font-size: 0.875rem;
+        }
+
+        .requirement-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .requirement-check {
+            color: #24A148;
+            font-weight: 600;
+        }
+
+        /* IBM Consulting Advantage Badge */
+        .ibm-advantage-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #0F62FE 0%, #8A3FFC 100%);
+            color: #ffffff;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        .cpd-credits {
+            background: #ffffff;
+            color: #0F62FE;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
@@ -1534,6 +1746,39 @@
     </div>
 
     <script>
+        // IBM Consulting Advantage Integration Data
+        const ibmSkills = {
+            'AI-001': { name: 'Artificial Intelligence', level: 'Advanced' },
+            'AI-002': { name: 'Machine Learning', level: 'Intermediate' },
+            'AI-003': { name: 'Agentic AI Systems', level: 'Advanced' },
+            'CLOUD-001': { name: 'Cloud Architecture', level: 'Advanced' },
+            'CLOUD-002': { name: 'IBM Cloud', level: 'Intermediate' },
+            'CLOUD-003': { name: 'Hybrid Cloud', level: 'Advanced' },
+            'AMS-001': { name: 'Application Management', level: 'Intermediate' },
+            'AMS-002': { name: 'Service Delivery', level: 'Foundation' },
+            'GOV-001': { name: 'AI Governance', level: 'Advanced' },
+            'GOV-002': { name: 'Ethics & Compliance', level: 'Intermediate' },
+            'DATA-001': { name: 'Data Analytics', level: 'Advanced' },
+            'DATA-002': { name: 'Watson Analytics', level: 'Intermediate' },
+            'LEAD-001': { name: 'Digital Leadership', level: 'Advanced' },
+            'LEAD-002': { name: 'Change Management', level: 'Intermediate' }
+        };
+
+        const ibmCareerLevels = [
+            { id: 1, name: 'Analyst', order: 1 },
+            { id: 2, name: 'Consultant', order: 2 },
+            { id: 3, name: 'Senior Consultant', order: 3 },
+            { id: 4, name: 'Managing Consultant', order: 4 },
+            { id: 5, name: 'Associate Partner', order: 5 },
+            { id: 6, name: 'Partner', order: 6 }
+        ];
+
+        const ibmBadges = {
+            'completion': { name: 'Course Completion', icon: '🎓', color: 'badge-completion' },
+            'acclaim': { name: 'IBM Acclaim', icon: '🏆', color: 'badge-acclaim' },
+            'excellence': { name: 'Excellence Award', icon: '⭐', color: 'badge-excellence' }
+        };
+
         const courses = [
             {
                 id: 1,
@@ -1547,7 +1792,14 @@
                 status: "open",
                 enrolled: 28,
                 capacity: 40,
-                waitlist: []
+                waitlist: [],
+                // IBM Consulting Advantage Integration
+                skills: ['AI-001', 'AI-002', 'AI-003'],
+                careerLevels: [3, 4, 5, 6], // Senior Consultant and above
+                cpdCredits: 24,
+                badges: ['completion', 'acclaim'],
+                competencyArea: 'Technology',
+                requiredLevel: 'Senior Consultant'
             },
             {
                 id: 2,
@@ -1561,7 +1813,14 @@
                 status: "full",
                 enrolled: 50,
                 capacity: 50,
-                waitlist: []
+                waitlist: [],
+                // IBM Consulting Advantage Integration
+                skills: ['CLOUD-001', 'CLOUD-002', 'CLOUD-003'],
+                careerLevels: [2, 3, 4, 5], // Consultant and above
+                cpdCredits: 16,
+                badges: ['completion', 'acclaim'],
+                competencyArea: 'Technology',
+                requiredLevel: 'Consultant'
             },
             {
                 id: 3,
@@ -1575,7 +1834,14 @@
                 status: "open",
                 enrolled: 142,
                 capacity: 200,
-                waitlist: []
+                waitlist: [],
+                // IBM Consulting Advantage Integration
+                skills: ['AMS-001', 'AMS-002'],
+                careerLevels: [1, 2, 3], // Analyst to Senior Consultant
+                cpdCredits: 8,
+                badges: ['completion'],
+                competencyArea: 'Delivery',
+                requiredLevel: 'Analyst'
             },
             {
                 id: 4,
@@ -1589,7 +1855,14 @@
                 status: "open",
                 enrolled: 89,
                 capacity: 150,
-                waitlist: []
+                waitlist: [],
+                // IBM Consulting Advantage Integration
+                skills: ['GOV-001', 'GOV-002', 'AI-001'],
+                careerLevels: [3, 4, 5, 6], // Senior Consultant and above
+                cpdCredits: 4,
+                badges: ['completion', 'excellence'],
+                competencyArea: 'Strategy',
+                requiredLevel: 'Senior Consultant'
             },
             {
                 id: 5,
@@ -1603,7 +1876,14 @@
                 status: "upcoming",
                 enrolled: 12,
                 capacity: 30,
-                waitlist: []
+                waitlist: [],
+                // IBM Consulting Advantage Integration
+                skills: ['DATA-001', 'DATA-002', 'AI-002'],
+                careerLevels: [2, 3, 4, 5], // Consultant and above
+                cpdCredits: 40,
+                badges: ['completion', 'acclaim', 'excellence'],
+                competencyArea: 'Technology',
+                requiredLevel: 'Consultant'
             },
             {
                 id: 6,
@@ -1617,7 +1897,14 @@
                 status: "full",
                 enrolled: 25,
                 capacity: 25,
-                waitlist: []
+                waitlist: [],
+                // IBM Consulting Advantage Integration
+                skills: ['LEAD-001', 'LEAD-002'],
+                careerLevels: [4, 5, 6], // Managing Consultant and above
+                cpdCredits: 16,
+                badges: ['completion', 'excellence'],
+                competencyArea: 'Leadership',
+                requiredLevel: 'Managing Consultant'
             },
             {
                 id: 7,
@@ -1631,7 +1918,14 @@
                 status: "open",
                 enrolled: 18,
                 capacity: 35,
-                waitlist: []
+                waitlist: [],
+                // IBM Consulting Advantage Integration
+                skills: ['AI-001', 'AI-003'],
+                careerLevels: [3, 4, 5, 6], // Senior Consultant and above
+                cpdCredits: 24,
+                badges: ['completion', 'acclaim'],
+                competencyArea: 'Technology',
+                requiredLevel: 'Senior Consultant'
             },
             {
                 id: 8,
@@ -1645,7 +1939,14 @@
                 status: "open",
                 enrolled: 67,
                 capacity: 100,
-                waitlist: []
+                waitlist: [],
+                // IBM Consulting Advantage Integration
+                skills: ['DATA-001', 'DATA-002', 'CLOUD-002'],
+                careerLevels: [2, 3, 4], // Consultant to Managing Consultant
+                cpdCredits: 32,
+                badges: ['completion', 'acclaim'],
+                competencyArea: 'Technology',
+                requiredLevel: 'Consultant'
             }
         ];
 
@@ -1805,6 +2106,74 @@
                     `;
                 }
                 
+                // IBM Consulting Advantage Features
+                let ibmFeaturesHtml = '';
+                if (course.skills || course.badges || course.careerLevels) {
+                    // Skills Section
+                    let skillsHtml = '';
+                    if (course.skills && course.skills.length > 0) {
+                        const skillTags = course.skills.map(skillId => {
+                            const skill = ibmSkills[skillId];
+                            if (!skill) return '';
+                            const levelClass = `skill-level-${skill.level.toLowerCase()}`;
+                            return `<div class="skill-tag">${skill.name} <span class="skill-level ${levelClass}">${skill.level}</span></div>`;
+                        }).join('');
+                        
+                        skillsHtml = `
+                            <div class="skills-section">
+                                <div class="skills-title">🎯 IBM Skills</div>
+                                <div class="skills-grid">${skillTags}</div>
+                            </div>
+                        `;
+                    }
+                    
+                    // Badges Section
+                    let badgesHtml = '';
+                    if (course.badges && course.badges.length > 0) {
+                        const badgeElements = course.badges.map(badgeId => {
+                            const badge = ibmBadges[badgeId];
+                            if (!badge) return '';
+                            return `
+                                <div class="badge-container">
+                                    <div class="digital-badge ${badge.color}">${badge.icon}</div>
+                                    <div class="badge-label">${badge.name}</div>
+                                </div>
+                            `;
+                        }).join('');
+                        
+                        badgesHtml = `
+                            <div class="badges-section">
+                                <div class="skills-title">🏆 Earn Digital Badges</div>
+                                <div class="badge-showcase">${badgeElements}</div>
+                            </div>
+                        `;
+                    }
+                    
+                    // Career Level Section
+                    let careerHtml = '';
+                    if (course.careerLevels && course.careerLevels.length > 0) {
+                        const levelNames = course.careerLevels.map(levelId => {
+                            const level = ibmCareerLevels.find(l => l.id === levelId);
+                            return level ? level.name : '';
+                        }).filter(n => n).join(', ');
+                        
+                        careerHtml = `
+                            <div class="career-section">
+                                <div class="career-title">📈 Career Development</div>
+                                <div style="font-size: 0.875rem; margin-bottom: 0.5rem;">
+                                    <strong>Recommended for:</strong> ${levelNames}
+                                </div>
+                                <div style="font-size: 0.875rem;">
+                                    <strong>Competency Area:</strong> ${course.competencyArea || 'General'}
+                                </div>
+                                ${course.cpdCredits ? `<div class="ibm-advantage-badge">IBM Consulting Advantage <span class="cpd-credits">${course.cpdCredits} CPD Credits</span></div>` : ''}
+                            </div>
+                        `;
+                    }
+                    
+                    ibmFeaturesHtml = skillsHtml + badgesHtml + careerHtml;
+                }
+                
                 card.innerHTML = `
                     <div class="course-category-banner category-${course.category}">
                         ${course.categoryLabel}
@@ -1821,6 +2190,7 @@
                             <span class="badge badge-status-${course.status} ${course.status === 'on-demand' ? 'badge-on-demand' : ''}">${statusLabel}</span>
                         </div>
                         ${feedbackHtml}
+                        ${ibmFeaturesHtml}
                         <div class="enrolment-progress">
                             <div class="progress-label">
                                 <span>Enrolment</span>
