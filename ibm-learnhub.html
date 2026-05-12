@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBM LearnHub - Training Management Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background-color: #f4f4f4;
+            color: #161616;
+        }
+
+        .header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 0 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0F62FE;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: #525252;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: #161616;
+        }
+
+        .user-role {
+            color: #0F62FE;
+            font-weight: 500;
+        }
+
+        .nav {
+            display: flex;
+            gap: 2rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .nav-item {
+            padding: 1rem 0;
+            cursor: pointer;
+            color: #525252;
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .nav-item:hover {
+            color: #0F62FE;
+        }
+
+        .nav-item.active {
+            color: #0F62FE;
+            border-bottom-color: #0F62FE;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .view-section {
+            display: none;
+        }
+
+        .view-section.active {
+            display: block;
+        }
+
+        .metrics-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 4px;
+            border-left: 4px solid #0F62FE;
+        }
+
+        .metric-label {
+            font-size: 0.875rem;
+            color: #525252;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #161616;
+        }
+
+        .filters-section {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: 'IBM Plex Sans', sans-serif;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-box:focus {
+            outline: 2px solid #0F62FE;
+            border-color: #0F62FE;
+        }
+
+        .category-filters {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #e0e0e0;
+            background: #ffffff;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
+
+        .category-btn:hover {
+            border-color: #0F62FE;
+            color: #0F62FE;
+        }
+
+        .category-btn.active {
+            background: #0F62FE;
+            color: #ffffff;
+            border-color: #0F62FE;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .course-card {
+            background: #ffffff;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-category-banner {
+            padding: 0.5rem 1rem;
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .category-agentic-ai { background: #0F62FE; }
+        .category-cloud { background: #24A148; }
+        .category-ams { background: #8A3FFC; }
+        .category-governance { background: #FA4D56; }
+        .category-data { background: #F1C21B; color: #161616; }
+        .category-leadership { background: #FF832B; }
+
+        .course-content {
+            padding: 1.5rem;
+        }
+
+        .course-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #161616;
+        }
+
+        .course-trainer {
+            font-size: 0.875rem;
+            color: #525252;
+            margin-bottom: 1rem;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            color: #525252;
+        }
+
+        .course-badges {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .badge-format {
+            background: #E8DAFF;
+            color: #6929C4;
+        }
+
+        .badge-status-open {
+            background: #DEFBE6;
+            color: #0E6027;
+        }
+
+        .badge-status-full {
+            background: #FFD6E8;
+            color: #9F1853;
+        }
+
+        .badge-status-upcoming {
+            background: #D0E2FF;
+            color: #0043CE;
+        }
+
+        .enrolment-progress {
+            margin-bottom: 1rem;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: #525252;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #0F62FE;
+            transition: width 0.3s;
+        }
+
+        .enrol-btn, .waitlist-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: #0F62FE;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
+
+        .enrol-btn:hover, .waitlist-btn:hover {
+            background: #0353E9;
+        }
+
+        .waitlist-btn {
+            background: #8A3FFC;
+        }
+
+        .waitlist-btn:hover {
+            background: #6929C4;
+        }
+
+        .enrol-btn:disabled {
+            background: #c6c6c6;
+            cursor: not-allowed;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: #ffffff;
+            border-radius: 4px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #161616;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #161616;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: 2px solid #0F62FE;
+            border-color: #0F62FE;
+        }
+
+        .modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'IBM Plex Sans', sans-serif;
+            transition: background 0.2s;
+        }
+
+        .btn-primary {
+            background: #0F62FE;
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background: #0353E9;
+        }
+
+        .btn-secondary {
+            background: #ffffff;
+            color: #161616;
+            border: 1px solid #e0e0e0;
+        }
+
+        .btn-secondary:hover {
+            background: #f4f4f4;
+        }
+
+        .confirmation-content {
+            text-align: center;
+        }
+
+        .confirmation-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .confirmation-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #161616;
+            margin-bottom: 1rem;
+        }
+
+        .confirmation-details {
+            background: #f4f4f4;
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .confirmation-detail {
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+        }
+
+        .confirmation-detail:last-child {
+            margin-bottom: 0;
+        }
+
+        .confirmation-detail strong {
+            color: #161616;
+            font-weight: 600;
+        }
+
+        /* Admin Section */
+        .admin-controls {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .admin-controls label {
+            font-weight: 500;
+        }
+
+        .admin-controls select {
+            flex: 1;
+            min-width: 250px;
+            padding: 0.75rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
+
+        .roster-table-container {
+            background: #ffffff;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .roster-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .roster-table th {
+            background: #f4f4f4;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: #161616;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .roster-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 0.875rem;
+        }
+
+        .roster-table tr:hover {
+            background: #f4f4f4;
+        }
+
+        .status-select {
+            padding: 0.5rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 0.875rem;
+        }
+
+        .export-btn {
+            background: #24A148;
+            color: #ffffff;
+        }
+
+        .export-btn:hover {
+            background: #1E8A3C;
+        }
+
+        .notification-banner {
+            background: #DEFBE6;
+            border-left: 4px solid #24A148;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .notification-banner.active {
+            display: block;
+        }
+
+        .notification-banner strong {
+            color: #0E6027;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .header {
+                padding: 0 1rem;
+            }
+
+            .nav {
+                gap: 1rem;
+                overflow-x: auto;
+            }
+
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .roster-table-container {
+                overflow-x: auto;
+            }
+
+            .modal {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-top">
+            <div class="logo">IBM LearnHub</div>
+            <div class="user-info">
+                <span class="user-name">SANJAY K</span>
+                <span>·</span>
+                <span class="user-role">ADMIN</span>
+            </div>
+        </div>
+        <nav class="nav">
+            <div class="nav-item active" data-view="catalogue">Catalogue</div>
+            <div class="nav-item" data-view="my-learning">My Learning</div>
+            <div class="nav-item" data-view="recordings">Recordings</div>
+            <div class="nav-item" data-view="analytics">Analytics</div>
+            <div class="nav-item" data-view="admin">Admin</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="metrics-bar">
+            <div class="metric-card">
+                <div class="metric-label">Total Active Courses</div>
+                <div class="metric-value">24</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Total Enrolled Learners</div>
+                <div class="metric-value">1,847</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Completion Rate</div>
+                <div class="metric-value">87%</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Avg Feedback Score</div>
+                <div class="metric-value">4.6</div>
+            </div>
+        </div>
+
+        <div class="filters-section">
+            <input type="text" class="search-box" id="searchBox" placeholder="Search courses by title or trainer name...">
+            <div class="category-filters">
+                <button class="category-btn active" data-category="all">All</button>
+                <button class="category-btn" data-category="agentic-ai">Agentic AI</button>
+                <button class="category-btn" data-category="cloud">Cloud & Infrastructure</button>
+                <button class="category-btn" data-category="ams">AMS Delivery</button>
+                <button class="category-btn" data-category="governance">AI Governance</button>
+                <button class="category-btn" data-category="data">Data & Analytics</button>
+                <button class="category-btn" data-category="leadership">Leadership</button>
+            </div>
+        </div>
+
+        <div class="course-grid" id="courseGrid"></div>
+    </main>
+
+    <script>
+        const courses = [
+            {
+                id: 1,
+                title: "Building Agentic AI Systems with watsonx",
+                trainer: "Dr. Sarah Chen",
+                category: "agentic-ai",
+                categoryLabel: "Agentic AI",
+                date: "June 15, 2026",
+                duration: "3 days",
+                format: "Live",
+                status: "open",
+                enrolled: 28,
+                capacity: 40
+            },
+            {
+                id: 2,
+                title: "IBM Cloud Architecture Fundamentals",
+                trainer: "Michael Rodriguez",
+                category: "cloud",
+                categoryLabel: "Cloud & Infrastructure",
+                date: "June 20, 2026",
+                duration: "2 days",
+                format: "Live",
+                status: "open",
+                enrolled: 35,
+                capacity: 50
+            },
+            {
+                id: 3,
+                title: "AMS Service Delivery Excellence",
+                trainer: "Priya Sharma",
+                category: "ams",
+                categoryLabel: "AMS Delivery",
+                date: "June 18, 2026",
+                duration: "1 day",
+                format: "Self-Paced",
+                status: "open",
+                enrolled: 142,
+                capacity: 200
+            },
+            {
+                id: 4,
+                title: "AI Ethics and Governance Framework",
+                trainer: "James Wilson",
+                category: "governance",
+                categoryLabel: "AI Governance",
+                date: "June 22, 2026",
+                duration: "4 hours",
+                format: "On-Demand",
+                status: "open",
+                enrolled: 89,
+                capacity: 150
+            },
+            {
+                id: 5,
+                title: "Advanced Data Analytics with IBM Watson",
+                trainer: "Lisa Anderson",
+                category: "data",
+                categoryLabel: "Data & Analytics",
+                date: "July 1, 2026",
+                duration: "5 days",
+                format: "Live",
+                status: "upcoming",
+                enrolled: 12,
+                capacity: 30
+            },
+            {
+                id: 6,
+                title: "Leadership in Digital Transformation",
+                trainer: "Robert Kumar",
+                category: "leadership",
+                categoryLabel: "Leadership",
+                date: "June 25, 2026",
+                duration: "2 days",
+                format: "Live",
+                status: "full",
+                enrolled: 25,
+                capacity: 25
+            },
+            {
+                id: 7,
+                title: "Multi-Agent Systems Design Patterns",
+                trainer: "Dr. Emily Zhang",
+                category: "agentic-ai",
+                categoryLabel: "Agentic AI",
+                date: "June 28, 2026",
+                duration: "3 days",
+                format: "Live",
+                status: "open",
+                enrolled: 18,
+                capacity: 35
+            },
+            {
+                id: 8,
+                title: "IBM Cloud Pak for Data Administration",
+                trainer: "David Thompson",
+                category: "data",
+                categoryLabel: "Data & Analytics",
+                date: "July 5, 2026",
+                duration: "4 days",
+                format: "Self-Paced",
+                status: "open",
+                enrolled: 67,
+                capacity: 100
+            }
+        ];
+
+        function renderCourses(filteredCourses) {
+            const grid = document.getElementById('courseGrid');
+            grid.innerHTML = '';
+
+            filteredCourses.forEach(course => {
+                const progressPercent = Math.round((course.enrolled / course.capacity) * 100);
+                const statusLabel = course.status === 'open' ? 'Open' : 
+                                  course.status === 'full' ? 'Full' : 'Upcoming';
+                
+                const card = document.createElement('div');
+                card.className = 'course-card';
+                card.innerHTML = `
+                    <div class="course-category-banner category-${course.category}">
+                        ${course.categoryLabel}
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">${course.title}</h3>
+                        <div class="course-trainer">👤 ${course.trainer}</div>
+                        <div class="course-meta">
+                            <span>📅 ${course.date}</span>
+                            <span>⏱️ ${course.duration}</span>
+                        </div>
+                        <div class="course-badges">
+                            <span class="badge badge-format">${course.format}</span>
+                            <span class="badge badge-status-${course.status}">${statusLabel}</span>
+                        </div>
+                        <div class="enrolment-progress">
+                            <div class="progress-label">
+                                <span>Enrolment</span>
+                                <span>${course.enrolled}/${course.capacity}</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${progressPercent}%"></div>
+                            </div>
+                        </div>
+                        <button class="enrol-btn" ${course.status === 'full' ? 'disabled' : ''}>
+                            ${course.status === 'full' ? 'Course Full' : 'Enrol Now'}
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        let currentCategory = 'all';
+        let searchTerm = '';
+
+        function filterCourses() {
+            let filtered = courses;
+
+            if (currentCategory !== 'all') {
+                filtered = filtered.filter(c => c.category === currentCategory);
+            }
+
+            if (searchTerm) {
+                filtered = filtered.filter(c => 
+                    c.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    c.trainer.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+            }
+
+            renderCourses(filtered);
+        }
+
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentCategory = this.dataset.category;
+                filterCourses();
+            });
+        });
+
+        document.getElementById('searchBox').addEventListener('input', function(e) {
+            searchTerm = e.target.value;
+            filterCourses();
+        });
+
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        renderCourses(courses);
+    </script>
+</body>
+</html>
